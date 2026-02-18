@@ -64,7 +64,7 @@ namespace ITHappy
                 }
             }
 
-            m_Transform.position = finalPos + (Quaternion.LookRotation(forward, finalUp) * positionOffset);
+            m_Transform.position = finalPos + positionOffset;
             m_Transform.LookAt(finalPos + forward * 5f, finalUp);
 
             foreach(var part in m_Parts)

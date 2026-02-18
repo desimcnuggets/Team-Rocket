@@ -292,7 +292,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MaxSpeed: 12
   m_AccelerationSpeed: 30
-  positionOffset: {x: 0, y: 2, z: 0}
+  positionOffset: {x: 0, y: 0, z: 0}
+  snapToSurface: 1
+  surfaceLayer:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!4 &2964753378697414004 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8b146934d9146b34d8da4df714e769f5, type: 3}

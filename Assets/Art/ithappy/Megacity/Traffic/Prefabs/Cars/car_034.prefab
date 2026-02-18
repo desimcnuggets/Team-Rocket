@@ -121,7 +121,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MaxSpeed: 8
   m_AccelerationSpeed: 30
-  positionOffset: {x: 0, y: 2, z: 0}
+  positionOffset: {x: 0, y: 0, z: 0}
+  snapToSurface: 1
+  surfaceLayer:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!1001 &2560966699608467143
 PrefabInstance:
   m_ObjectHideFlags: 0

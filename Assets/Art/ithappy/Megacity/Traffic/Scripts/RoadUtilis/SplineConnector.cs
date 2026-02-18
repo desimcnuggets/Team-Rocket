@@ -18,6 +18,12 @@ namespace ITHappy
         public TrafficManager.CrossData[] Crosses => m_Crosses;
 
         [ContextMenu("GenArrays")]
+        private void Awake()
+        {
+            GenerateArrays();
+        }
+
+        [ContextMenu("GenArrays")]
         public void GenerateArrays()
         {
             GetCrosses(out var crosses);
