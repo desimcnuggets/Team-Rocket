@@ -10,6 +10,7 @@ public class CrimeEvent : ScriptableObject
     public int bribeValue;
     public string victimDescription;
     public Sprite victimPortrait;
+    public Sprite mapIcon;
     public string tickerIgnore;
     public string tickerRaid;
     public CrimeEvent escalatesTo;

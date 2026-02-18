@@ -4,7 +4,7 @@ public class EconomyManager : MonoBehaviour
 {
     public static EconomyManager Instance;
     
-    [SerializeField] private float budget = 10000f;
+    [SerializeField] private float budget = 15000f;
     private float totalBribesReceived = 0f;
     
     void Awake()

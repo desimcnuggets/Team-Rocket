@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
     
     [Header("HUD")]
     [SerializeField] private Slider crimeRateBar;
+    [SerializeField] private Image crimeBarFill;
     [SerializeField] private TextMeshProUGUI crimeRateText;
     [SerializeField] private TextMeshProUGUI budgetText;
     [SerializeField] private TextMeshProUGUI dayCounterText;
@@ -26,6 +27,12 @@ public class UIManager : MonoBehaviour
     [Header("Loss Screen")]
     [SerializeField] private GameObject lossScreenPanel;
     [SerializeField] private TextMeshProUGUI lossReasonText;
+
+    [Header("Police Units")]
+    [SerializeField] private Image[] policeUnitIcons;
+    [SerializeField] private Slider policeRegenSlider;
+    [SerializeField] private Color unitAvailableColor = Color.blue;
+    [SerializeField] private Color unitUsedColor = Color.gray;
     
     private CrimeEvent currentEvent;
     private GameObject currentIcon;
@@ -62,10 +69,24 @@ public class UIManager : MonoBehaviour
             escalationWarning.SetActive(alreadyIgnored);
         }
     }
+
+    public bool IsDecisionPanelOpen
+    {
+        get { return decisionCardPanel != null && decisionCardPanel.activeSelf; }
+    }
     
+
     public void OnRaidClicked()
     {
+        Debug.Log("Raid Clicked");
         if (EconomyManager.Instance == null) return;
+        
+        // CHECK POLICE UNITS
+        if (PoliceManager.Instance == null || !PoliceManager.Instance.HasUnits())
+        {
+             UpdateTicker("NO UNITS AVAILABLE: Wait for reinforcements!");
+             return;
+        }
         
         if (EconomyManager.Instance.GetBudget() < 1000f)
         {
@@ -74,6 +95,7 @@ public class UIManager : MonoBehaviour
         }
         
         EconomyManager.Instance.DeductFunds(1000);
+        PoliceManager.Instance.ConsumeUnit();
         
         if (CrimeManager.Instance != null)
         {
@@ -98,6 +120,53 @@ public class UIManager : MonoBehaviour
         if (decisionCardPanel != null)
         {
             decisionCardPanel.SetActive(false);
+        }
+    }
+
+    void Update()
+    {
+        UpdatePoliceUI();
+        
+        if (isAnarchy && crimeBarFill != null)
+        {
+            float t = Mathf.PingPong(Time.time * 2f, 1f);
+            crimeBarFill.color = Color.Lerp(Color.red, new Color(0.5f, 0f, 0f), t);
+        }
+    }
+
+    void UpdatePoliceUI()
+    {
+        if (PoliceManager.Instance == null) return;
+
+        if (policeRegenSlider != null)
+        {
+            if (PoliceManager.Instance.currentUnits >= PoliceManager.Instance.maxUnits)
+            {
+                 policeRegenSlider.value = policeRegenSlider.maxValue;
+            }
+            else
+            {
+                 float progress = PoliceManager.Instance.regenTimer / PoliceManager.Instance.regenInterval;
+                 policeRegenSlider.value = progress * policeRegenSlider.maxValue;
+            }
+        }
+
+        if (policeUnitIcons != null)
+        {
+            for (int i = 0; i < policeUnitIcons.Length; i++)
+            {
+                if (policeUnitIcons[i] != null)
+                {
+                    if (i < PoliceManager.Instance.currentUnits)
+                    {
+                        policeUnitIcons[i].color = unitAvailableColor;
+                    }
+                    else
+                    {
+                        policeUnitIcons[i].color = unitUsedColor;
+                    }
+                }
+            }
         }
     }
     
@@ -134,11 +203,35 @@ public class UIManager : MonoBehaviour
         }
     }
     
+    private bool isAnarchy = false;
+    
     public void UpdateCrimeBar(float crimeRate)
     {
         if (crimeRateBar != null)
         {
             crimeRateBar.value = crimeRate;
+        }
+        
+        if (crimeBarFill != null)
+        {
+            isAnarchy = false;
+            if (crimeRate < 30f)
+            {
+                crimeBarFill.color = Color.blue;
+            }
+            else if (crimeRate < 70f)
+            {
+                crimeBarFill.color = Color.green;
+            }
+            else if (crimeRate < 90f)
+            {
+                // Amber
+                crimeBarFill.color = new Color(1f, 0.75f, 0f);
+            }
+            else
+            {
+                isAnarchy = true;
+            }
         }
         
         if (crimeRateText != null)
@@ -166,11 +259,37 @@ public class UIManager : MonoBehaviour
     
     public void UpdateDayCounter(int day)
     {
+        UpdateDayTime(day, 0f);
+    }
+    
+    public void UpdateDayTime(int day, float timeSeconds)
+    {
         if (dayCounterText != null)
         {
-            dayCounterText.text = $"Day {day}";
+            // 60 seconds = 24 hours = 1440 minutes
+            // 1 second constant = 24 minutes game time
+            float totalMinutes = timeSeconds * 24f;
+            
+            int totalHours = Mathf.FloorToInt(totalMinutes / 60f);
+            int displayMinutes = Mathf.FloorToInt(totalMinutes % 60f);
+            
+            // Handle 24h wrapping for display logic
+            int hourOfDay = totalHours % 24;
+            
+            string period = "AM";
+            int displayHour = hourOfDay;
+            
+            if (hourOfDay >= 12)
+            {
+                period = "PM";
+                if (hourOfDay > 12) displayHour -= 12;
+            }
+            if (displayHour == 0) displayHour = 12;
+            
+            dayCounterText.text = $"Day {day} - {displayHour}:{displayMinutes:D2} {period}";
         }
     }
+
     
     public void UpdateTicker(string message)
     {

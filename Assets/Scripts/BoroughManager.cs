@@ -33,7 +33,7 @@ public class BoroughManager : MonoBehaviour
             displayName = "Westminster",
             isUnlocked = true,
             unlockDay = 1,
-            mood = 50f,
+            mood = 70f,
             cameraAngle = 0f
         });
         
@@ -43,7 +43,7 @@ public class BoroughManager : MonoBehaviour
             displayName = "The City",
             isUnlocked = false,
             unlockDay = 3,
-            mood = 50f,
+            mood = 65f,
             cameraAngle = 40f
         });
         
@@ -52,7 +52,7 @@ public class BoroughManager : MonoBehaviour
             type = BoroughType.Camden,
             displayName = "Camden",
             isUnlocked = false,
-            unlockDay = 3,
+            unlockDay = 5,
             mood = 50f,
             cameraAngle = -40f
         });
@@ -62,8 +62,8 @@ public class BoroughManager : MonoBehaviour
             type = BoroughType.EastEnd,
             displayName = "East End",
             isUnlocked = false,
-            unlockDay = 5,
-            mood = 50f,
+            unlockDay = 7,
+            mood = 45f,
             cameraAngle = 80f
         });
         
@@ -72,8 +72,8 @@ public class BoroughManager : MonoBehaviour
             type = BoroughType.Brixton,
             displayName = "Brixton",
             isUnlocked = false,
-            unlockDay = 5,
-            mood = 50f,
+            unlockDay = 7,
+            mood = 40f,
             cameraAngle = -80f
         });
         
@@ -82,8 +82,8 @@ public class BoroughManager : MonoBehaviour
             type = BoroughType.Kingston,
             displayName = "Kingston",
             isUnlocked = false,
-            unlockDay = 7,
-            mood = 50f,
+            unlockDay = 9,
+            mood = 60f,
             cameraAngle = 130f
         });
     }
@@ -113,6 +113,11 @@ public class BoroughManager : MonoBehaviour
         return null;
     }
     
+    public List<Borough> GetAllBoroughs()
+    {
+        return boroughs;
+    }
+    
     public void CheckUnlocks(int day)
     {
         foreach (Borough b in boroughs)
@@ -127,7 +132,6 @@ public class BoroughManager : MonoBehaviour
     void UnlockBorough(Borough b)
     {
         b.isUnlocked = true;
-        b.mood = 50f;
         
         if (b.boroughModel != null)
         {
