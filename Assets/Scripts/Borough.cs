@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[System.Serializable]
 public class Borough
 {
     public BoroughType type;
@@ -10,4 +11,8 @@ public class Borough
     public float cameraAngle;
     public GameObject boroughModel;
     public Material fogMaterial;
+    
+    [Header("Visuals")]
+    public GameObject lockedVisual; // The low opacity cube
+    public GameObject boroughGround; // The ground object for organization/spawning
 }

@@ -18,6 +18,11 @@ namespace ITHappy
         private float m_Speed = 1f;
         [SerializeField]
         private int m_Spline;
+        
+        public Vector3 positionOffset;
+
+        public bool snapToSurface = true;
+        public LayerMask surfaceLayer = 1;
 
         private float m_Time;
         private float m_Length;
@@ -55,11 +60,29 @@ namespace ITHappy
         {
             m_Container.Evaluate(m_Spline, m_Time, out var pos, out var tan, out var up);
 
-            transform.position = pos;
+            Vector3 finalPos = (Vector3)pos;
+            Vector3 finalUp = (Vector3)up;
+
+            if (snapToSurface)
+            {
+                RaycastHit[] hits = Physics.RaycastAll(finalPos + Vector3.up * 20f, Vector3.down, 50f, surfaceLayer);
+                foreach (var hit in hits)
+                {
+                    if (hit.collider.transform != transform && hit.collider.transform.root != transform.root)
+                    {
+                         finalPos = hit.point;
+                         finalUp = hit.normal;
+                         break;
+                    }
+                }
+            }
+
+            transform.position = finalPos;
             if (m_IsApplyRotation)
             {
-                transform.LookAt(pos + tan, up);
+                transform.LookAt(finalPos + (Vector3)tan, finalUp);
             }
+            transform.position += transform.TransformDirection(positionOffset);
         }
     }
 

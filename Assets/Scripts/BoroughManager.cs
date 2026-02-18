@@ -9,7 +9,7 @@ public class BoroughManager : MonoBehaviour
     [SerializeField] private GameObject unlockParticlePrefab;
     
     private const float BOROUGH_RADIUS = 15f;
-    private List<Borough> boroughs = new List<Borough>();
+    [SerializeField] private List<Borough> boroughs = new List<Borough>(); // Exposed to Inspector
     
     void Awake()
     {
@@ -17,7 +17,12 @@ public class BoroughManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            InitializeBoroughs();
+            
+            // Only initialize defaults if the list is empty (Inspector not used)
+            if (boroughs.Count == 0)
+            {
+                InitializeBoroughs();
+            }
         }
         else
         {
@@ -27,6 +32,7 @@ public class BoroughManager : MonoBehaviour
     
     void InitializeBoroughs()
     {
+        // ... (Keep existing hardcoded logic as fallback) ...
         boroughs.Add(new Borough
         {
             type = BoroughType.Westminster,
@@ -36,6 +42,12 @@ public class BoroughManager : MonoBehaviour
             mood = 70f,
             cameraAngle = 0f
         });
+        // ... (Shortened for brevity in tool call, but user file has full list) ...
+        // Logic: I will only replace the top part and let the rest exist, 
+        // but WAIT, replace_file_content needs exact match.
+        // I will just replace Awake and start of InitializeBoroughs to show intent, 
+        // AND Update UnlockBorough.
+
         
         boroughs.Add(new Borough
         {
@@ -132,6 +144,12 @@ public class BoroughManager : MonoBehaviour
     void UnlockBorough(Borough b)
     {
         b.isUnlocked = true;
+        
+        // Disable the "Locked" visual (Low opacity cube)
+        if (b.lockedVisual != null)
+        {
+            b.lockedVisual.SetActive(false);
+        }
         
         if (b.boroughModel != null)
         {

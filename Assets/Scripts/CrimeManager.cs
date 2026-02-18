@@ -72,6 +72,29 @@ public class CrimeManager : MonoBehaviour
     
     Vector3 GetRandomPositionOnBorough(Borough borough)
     {
+        // Use the dedicated ground object if it exists (Preferred)
+        if (borough.boroughGround != null)
+        {
+            Renderer gr = borough.boroughGround.GetComponent<Renderer>();
+            if (gr != null)
+            {
+                Bounds b = gr.bounds;
+                float x = Random.Range(b.min.x, b.max.x);
+                float z = Random.Range(b.min.z, b.max.z);
+                return new Vector3(x, b.max.y + 0.5f, z);
+            }
+            // Fallback to collider if no renderer on ground
+            Collider gc = borough.boroughGround.GetComponent<Collider>();
+            if (gc != null)
+            {
+                Bounds b = gc.bounds;
+                float x = Random.Range(b.min.x, b.max.x);
+                float z = Random.Range(b.min.z, b.max.z);
+                return new Vector3(x, b.max.y + 0.5f, z);
+            }
+        }
+
+        // Fallback to the old "Borough Model" logic
         Vector3 boroughCenter = borough.boroughModel.transform.position;
         Bounds bounds = new Bounds(boroughCenter, Vector3.one * 3f); // Default fallback
 

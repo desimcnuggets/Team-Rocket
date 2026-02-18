@@ -9,6 +9,10 @@ namespace ITHappy
         [SerializeField]
         private float m_AccelerationSpeed = 25f;
 
+        public Vector3 positionOffset;
+        public bool snapToSurface = true;
+        public LayerMask surfaceLayer = 1; // Default layer
+
         private Transform m_Transform;
         private ICarPart[] m_Parts;
 
@@ -43,8 +47,25 @@ namespace ITHappy
 
         public void SetTransform(ref Vector3 position, ref Vector3 forward, ref Vector3 up, bool isRender, float deltaTime)
         {
-            m_Transform.position = position;
-            m_Transform.LookAt(position + forward, up);
+            Vector3 finalPos = position;
+            Vector3 finalUp = up;
+
+            if (snapToSurface)
+            {
+                RaycastHit[] hits = Physics.RaycastAll(position + Vector3.up * 20f, Vector3.down, 50f, surfaceLayer);
+                foreach (var hit in hits)
+                {
+                    if (hit.collider.transform != m_Transform && hit.collider.transform.root != m_Transform.root)
+                    {
+                        finalPos = hit.point;
+                        finalUp = hit.normal;
+                        break;
+                    }
+                }
+            }
+
+            m_Transform.position = finalPos + (Quaternion.LookRotation(forward, finalUp) * positionOffset);
+            m_Transform.LookAt(finalPos + forward * 5f, finalUp);
 
             foreach(var part in m_Parts)
             {

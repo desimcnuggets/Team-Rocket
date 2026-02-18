@@ -281,9 +281,14 @@ namespace ITHappy
         {
             Dispose(m_RCarsData);
 
-            foreach(var buffer in m_RSplinesData)
+            Dispose(m_RCarsData);
+
+            if (m_RSplinesData != null)
             {
-                Dispose(buffer);
+                foreach(var buffer in m_RSplinesData)
+                {
+                    Dispose(buffer);
+                }
             }
 
             Dispose(m_RCrossData);
