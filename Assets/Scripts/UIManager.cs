@@ -63,9 +63,23 @@ public class UIManager : MonoBehaviour
         }
     }
     
+    [Header("Police Units")]
+    [SerializeField] private Image[] policeUnitIcons;
+    [SerializeField] private Slider policeRegenSlider;
+    [SerializeField] private Color unitAvailableColor = Color.blue;
+    [SerializeField] private Color unitUsedColor = Color.gray;
+
     public void OnRaidClicked()
     {
+        Debug.Log("Raid Clicked");
         if (EconomyManager.Instance == null) return;
+        
+        // CHECK POLICE UNITS
+        if (PoliceManager.Instance == null || !PoliceManager.Instance.HasUnits())
+        {
+             UpdateTicker("NO UNITS AVAILABLE: Wait for reinforcements!");
+             return;
+        }
         
         if (EconomyManager.Instance.GetBudget() < 1000f)
         {
@@ -74,6 +88,7 @@ public class UIManager : MonoBehaviour
         }
         
         EconomyManager.Instance.DeductFunds(1000);
+        PoliceManager.Instance.ConsumeUnit();
         
         if (CrimeManager.Instance != null)
         {
@@ -98,6 +113,47 @@ public class UIManager : MonoBehaviour
         if (decisionCardPanel != null)
         {
             decisionCardPanel.SetActive(false);
+        }
+    }
+
+    void Update()
+    {
+        UpdatePoliceUI();
+    }
+
+    void UpdatePoliceUI()
+    {
+        if (PoliceManager.Instance == null) return;
+
+        if (policeRegenSlider != null)
+        {
+            if (PoliceManager.Instance.currentUnits >= PoliceManager.Instance.maxUnits)
+            {
+                 policeRegenSlider.value = policeRegenSlider.maxValue;
+            }
+            else
+            {
+                 float progress = PoliceManager.Instance.regenTimer / PoliceManager.Instance.regenInterval;
+                 policeRegenSlider.value = progress * policeRegenSlider.maxValue;
+            }
+        }
+
+        if (policeUnitIcons != null)
+        {
+            for (int i = 0; i < policeUnitIcons.Length; i++)
+            {
+                if (policeUnitIcons[i] != null)
+                {
+                    if (i < PoliceManager.Instance.currentUnits)
+                    {
+                        policeUnitIcons[i].color = unitAvailableColor;
+                    }
+                    else
+                    {
+                        policeUnitIcons[i].color = unitUsedColor;
+                    }
+                }
+            }
         }
     }
     
