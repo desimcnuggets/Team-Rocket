@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
     
     [Header("HUD")]
     [SerializeField] private Slider crimeRateBar;
+    [SerializeField] private Image crimeBarFill;
     [SerializeField] private TextMeshProUGUI crimeRateText;
     [SerializeField] private TextMeshProUGUI budgetText;
     [SerializeField] private TextMeshProUGUI dayCounterText;
@@ -26,6 +27,12 @@ public class UIManager : MonoBehaviour
     [Header("Loss Screen")]
     [SerializeField] private GameObject lossScreenPanel;
     [SerializeField] private TextMeshProUGUI lossReasonText;
+
+    [Header("Police Units")]
+    [SerializeField] private Image[] policeUnitIcons;
+    [SerializeField] private Slider policeRegenSlider;
+    [SerializeField] private Color unitAvailableColor = Color.blue;
+    [SerializeField] private Color unitUsedColor = Color.gray;
     
     private CrimeEvent currentEvent;
     private GameObject currentIcon;
@@ -62,12 +69,12 @@ public class UIManager : MonoBehaviour
             escalationWarning.SetActive(alreadyIgnored);
         }
     }
+
+    public bool IsDecisionPanelOpen
+    {
+        get { return decisionCardPanel != null && decisionCardPanel.activeSelf; }
+    }
     
-    [Header("Police Units")]
-    [SerializeField] private Image[] policeUnitIcons;
-    [SerializeField] private Slider policeRegenSlider;
-    [SerializeField] private Color unitAvailableColor = Color.blue;
-    [SerializeField] private Color unitUsedColor = Color.gray;
 
     public void OnRaidClicked()
     {
@@ -119,6 +126,12 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         UpdatePoliceUI();
+        
+        if (isAnarchy && crimeBarFill != null)
+        {
+            float t = Mathf.PingPong(Time.time * 2f, 1f);
+            crimeBarFill.color = Color.Lerp(Color.red, new Color(0.5f, 0f, 0f), t);
+        }
     }
 
     void UpdatePoliceUI()
@@ -190,11 +203,35 @@ public class UIManager : MonoBehaviour
         }
     }
     
+    private bool isAnarchy = false;
+    
     public void UpdateCrimeBar(float crimeRate)
     {
         if (crimeRateBar != null)
         {
             crimeRateBar.value = crimeRate;
+        }
+        
+        if (crimeBarFill != null)
+        {
+            isAnarchy = false;
+            if (crimeRate < 30f)
+            {
+                crimeBarFill.color = Color.blue;
+            }
+            else if (crimeRate < 70f)
+            {
+                crimeBarFill.color = Color.green;
+            }
+            else if (crimeRate < 90f)
+            {
+                // Amber
+                crimeBarFill.color = new Color(1f, 0.75f, 0f);
+            }
+            else
+            {
+                isAnarchy = true;
+            }
         }
         
         if (crimeRateText != null)

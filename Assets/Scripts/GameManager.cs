@@ -21,12 +21,27 @@ public class GameManager : MonoBehaviour
         }
     }
     
+    [Header("Day Night Cycle")]
+    [SerializeField] private itsmakingthings_daynightcycle.DayNightCycle dayNightCycle;
+
     void Start()
     {
         dayStartTime = Time.time;
         if (UIManager.Instance != null)
         {
             UIManager.Instance.UpdateDayCounter(currentDay);
+        }
+        
+        if (dayNightCycle == null)
+        {
+            dayNightCycle = FindFirstObjectByType<itsmakingthings_daynightcycle.DayNightCycle>();
+        }
+
+        if (dayNightCycle != null)
+        {
+            dayNightCycle.StopTime();
+            // Ensure we start at 00:00 (12 AM)
+            dayNightCycle.SetTime(0f);
         }
     }
     
@@ -37,6 +52,14 @@ public class GameManager : MonoBehaviour
         if (UIManager.Instance != null)
         {
             UIManager.Instance.UpdateDayTime(currentDay, dayProgress);
+        }
+        
+        if (dayNightCycle != null)
+        {
+            // Map dayProgress (0 to 60) to Hours (0 to 24)
+            float startHour = 0f; // 12 AM
+            float currentHour = startHour + (dayProgress / DAY_DURATION) * 24f;
+            dayNightCycle.SetTime(currentHour);
         }
         
         if (dayProgress >= DAY_DURATION)

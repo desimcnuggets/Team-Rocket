@@ -14,6 +14,8 @@ public class CameraController : MonoBehaviour
     
     void Update()
     {
+        if (UIManager.Instance != null && UIManager.Instance.IsDecisionPanelOpen) return;
+
         HandleKeyboardInput();
         HandleMouseInput();
         ApplyRotation();
