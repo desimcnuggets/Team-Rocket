@@ -32,7 +32,14 @@ public class GameManager : MonoBehaviour
     
     void Update()
     {
-        if (Time.time - dayStartTime >= DAY_DURATION)
+        float dayProgress = Time.time - dayStartTime;
+        
+        if (UIManager.Instance != null)
+        {
+            UIManager.Instance.UpdateDayTime(currentDay, dayProgress);
+        }
+        
+        if (dayProgress >= DAY_DURATION)
         {
             AdvanceDay();
         }

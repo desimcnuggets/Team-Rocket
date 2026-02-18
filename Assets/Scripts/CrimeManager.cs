@@ -63,12 +63,37 @@ public class CrimeManager : MonoBehaviour
         
         if (evt == null || targetBorough.boroughModel == null) return;
         
-        Vector3 spawnPos = targetBorough.boroughModel.transform.position;
-        spawnPos.y = 2f;
+        Vector3 spawnPos = GetRandomPositionOnBorough(targetBorough);
         
         GameObject icon = Instantiate(crimeIconPrefab, spawnPos, Quaternion.identity);
         icon.GetComponent<CrimeIcon>().Initialize(evt);
         activeEvents.Add(icon);
+    }
+    
+    Vector3 GetRandomPositionOnBorough(Borough borough)
+    {
+        Vector3 boroughCenter = borough.boroughModel.transform.position;
+        Bounds bounds = new Bounds(boroughCenter, Vector3.one * 3f); // Default fallback
+
+        Renderer r = borough.boroughModel.GetComponent<Renderer>();
+        if (r != null)
+        {
+            bounds = r.bounds;
+        }
+        else
+        {
+            Collider c = borough.boroughModel.GetComponent<Collider>();
+            if (c != null)
+            {
+                bounds = c.bounds;
+            }
+        }
+        
+        float randomX = Random.Range(bounds.min.x, bounds.max.x);
+        float randomZ = Random.Range(bounds.min.z, bounds.max.z);
+        float spawnY = bounds.max.y + 0.5f; // Place slightly above the top
+        
+        return new Vector3(randomX, spawnY, randomZ);
     }
     
     public void ModifyCrimeRate(float change)
@@ -137,7 +162,7 @@ public class CrimeManager : MonoBehaviour
         Borough b = BoroughManager.Instance.GetBorough(borough);
         if (b == null || b.boroughModel == null) return;
         
-        Vector3 pos = b.boroughModel.transform.position + Vector3.up * 2f;
+        Vector3 pos = GetRandomPositionOnBorough(b);
         GameObject icon = Instantiate(crimeIconPrefab, pos, Quaternion.identity);
         icon.GetComponent<CrimeIcon>().Initialize(evt);
         activeEvents.Add(icon);

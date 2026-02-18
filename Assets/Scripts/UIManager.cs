@@ -166,11 +166,37 @@ public class UIManager : MonoBehaviour
     
     public void UpdateDayCounter(int day)
     {
+        UpdateDayTime(day, 0f);
+    }
+    
+    public void UpdateDayTime(int day, float timeSeconds)
+    {
         if (dayCounterText != null)
         {
-            dayCounterText.text = $"Day {day}";
+            // 60 seconds = 24 hours = 1440 minutes
+            // 1 second constant = 24 minutes game time
+            float totalMinutes = timeSeconds * 24f;
+            
+            int totalHours = Mathf.FloorToInt(totalMinutes / 60f);
+            int displayMinutes = Mathf.FloorToInt(totalMinutes % 60f);
+            
+            // Handle 24h wrapping for display logic
+            int hourOfDay = totalHours % 24;
+            
+            string period = "AM";
+            int displayHour = hourOfDay;
+            
+            if (hourOfDay >= 12)
+            {
+                period = "PM";
+                if (hourOfDay > 12) displayHour -= 12;
+            }
+            if (displayHour == 0) displayHour = 12;
+            
+            dayCounterText.text = $"Day {day} - {displayHour}:{displayMinutes:D2} {period}";
         }
     }
+
     
     public void UpdateTicker(string message)
     {
