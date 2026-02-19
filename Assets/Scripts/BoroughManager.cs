@@ -33,66 +33,66 @@ public class BoroughManager : MonoBehaviour
     void InitializeBoroughs()
     {
         // ... (Keep existing hardcoded logic as fallback) ...
+        // 1. Greenwich (Starting area)
         boroughs.Add(new Borough
         {
-            type = BoroughType.Westminster,
-            displayName = "Westminster",
+            type = BoroughType.Greenwich,
+            displayName = "Greenwich",
             isUnlocked = true,
             unlockDay = 1,
             mood = 70f,
             cameraAngle = 0f
         });
-        // ... (Shortened for brevity in tool call, but user file has full list) ...
-        // Logic: I will only replace the top part and let the rest exist, 
-        // but WAIT, replace_file_content needs exact match.
-        // I will just replace Awake and start of InitializeBoroughs to show intent, 
-        // AND Update UnlockBorough.
-
         
+        // 2. Westminster
         boroughs.Add(new Borough
         {
-            type = BoroughType.TheCity,
-            displayName = "The City",
+            type = BoroughType.Westminster,
+            displayName = "Westminster",
             isUnlocked = false,
             unlockDay = 3,
             mood = 65f,
             cameraAngle = 40f
         });
         
+        // 3. Lambeth
         boroughs.Add(new Borough
         {
-            type = BoroughType.Camden,
-            displayName = "Camden",
+            type = BoroughType.Lambeth,
+            displayName = "Lambeth",
             isUnlocked = false,
             unlockDay = 5,
             mood = 50f,
             cameraAngle = -40f
         });
         
+        // 4. Hillingdon
         boroughs.Add(new Borough
         {
-            type = BoroughType.EastEnd,
-            displayName = "East End",
+            type = BoroughType.Hillingdon,
+            displayName = "Hillingdon",
             isUnlocked = false,
             unlockDay = 7,
             mood = 45f,
             cameraAngle = 80f
         });
         
+        // 5. Kensington
         boroughs.Add(new Borough
         {
-            type = BoroughType.Brixton,
-            displayName = "Brixton",
+            type = BoroughType.Kensington,
+            displayName = "Kensington",
             isUnlocked = false,
             unlockDay = 7,
             mood = 40f,
             cameraAngle = -80f
         });
         
+        // 6. Camden
         boroughs.Add(new Borough
         {
-            type = BoroughType.Kingston,
-            displayName = "Kingston",
+            type = BoroughType.Camden,
+            displayName = "Camden",
             isUnlocked = false,
             unlockDay = 9,
             mood = 60f,
@@ -176,16 +176,16 @@ public class BoroughManager : MonoBehaviour
     {
         switch (type)
         {
-            case BoroughType.TheCity:
-                return "BREAKING: Crime spreads to The City — Bankers nervously check exits";
+            case BoroughType.Westminster:
+                return "BREAKING: Crime spreads to Westminster — Politicians nervously check exits";
+            case BoroughType.Lambeth:
+                return "Lambeth unlocked — Local businesses brace for impact";
+            case BoroughType.Hillingdon:
+                return "Hillingdon now active — Suburban tranquility disrupted";
+            case BoroughType.Kensington:
+                return "Kensington enters the fray — Property values threatened";
             case BoroughType.Camden:
-                return "Camden unlocked — Roadmen rejoice, artisanal coffee shops brace";
-            case BoroughType.EastEnd:
-                return "East End now active — Local geezers unimpressed";
-            case BoroughType.Brixton:
-                return "Brixton enters the fray — Community leaders demand action";
-            case BoroughType.Kingston:
-                return "Kingston unlocked — Suburban chaos ensues";
+                return "Camden unlocked — Alternative scene meets alternative crime";
             default:
                 return "New area unlocked";
         }

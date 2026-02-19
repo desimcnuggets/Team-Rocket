@@ -17,7 +17,7 @@ public class CrimeIcon : MonoBehaviour
             sr.sprite = evt.mapIcon;
             
             // INCREASE SIZE & ADD COLLIDER
-            transform.localScale = Vector3.one * 30f;
+            transform.localScale = Vector3.one * 60f;
             
             BoxCollider col = GetComponent<BoxCollider>();
             if (col == null)

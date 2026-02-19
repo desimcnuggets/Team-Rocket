@@ -81,7 +81,7 @@ public class CrimeManager : MonoBehaviour
                 Bounds b = gr.bounds;
                 float x = Random.Range(b.min.x, b.max.x);
                 float z = Random.Range(b.min.z, b.max.z);
-                return new Vector3(x, b.max.y + 0.5f, z);
+                return new Vector3(x, b.max.y + 40f, z);
             }
             // Fallback to collider if no renderer on ground
             Collider gc = borough.boroughGround.GetComponent<Collider>();
@@ -90,7 +90,7 @@ public class CrimeManager : MonoBehaviour
                 Bounds b = gc.bounds;
                 float x = Random.Range(b.min.x, b.max.x);
                 float z = Random.Range(b.min.z, b.max.z);
-                return new Vector3(x, b.max.y + 0.5f, z);
+                return new Vector3(x, b.max.y + 40f, z);
             }
         }
 
@@ -114,7 +114,7 @@ public class CrimeManager : MonoBehaviour
         
         float randomX = Random.Range(bounds.min.x, bounds.max.x);
         float randomZ = Random.Range(bounds.min.z, bounds.max.z);
-        float spawnY = bounds.max.y + 0.5f; // Place slightly above the top
+        float spawnY = bounds.max.y + 40f; // Place slightly above the top
         
         return new Vector3(randomX, spawnY, randomZ);
     }
