@@ -79,6 +79,7 @@ public class UIManager : MonoBehaviour
     public void OnRaidClicked()
     {
         Debug.Log("Raid Clicked");
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayRaidClick();
         if (EconomyManager.Instance == null) return;
         
         // CHECK POLICE UNITS
@@ -173,6 +174,8 @@ public class UIManager : MonoBehaviour
     public void OnIgnoreClicked()
     {
         if (currentEvent == null) return;
+        
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayIgnoreClick();
         
         if (EconomyManager.Instance != null)
         {
@@ -301,6 +304,8 @@ public class UIManager : MonoBehaviour
     
     public void ShowLossScreen(string reason)
     {
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayGameOver();
+        
         if (lossScreenPanel != null)
         {
             lossScreenPanel.SetActive(true);

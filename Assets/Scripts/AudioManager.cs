@@ -38,6 +38,25 @@ public class AudioManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        if (sfxSource == null)
+        {
+            sfxSource = gameObject.AddComponent<AudioSource>();
+            sfxSource.spatialBlend = 0f;
+            Debug.Log("AudioManager: sfxSource was not assigned. Adding a default AudioSource.");
+        }
+
+        if (musicSource == null)
+        {
+            musicSource = gameObject.AddComponent<AudioSource>();
+            musicSource.spatialBlend = 0f;
+            musicSource.loop = true;
+            Debug.Log("AudioManager: musicSource was not assigned. Adding a default AudioSource.");
+        }
+
+        // IMPORTANT: Let audio play even if Time.timeScale is 0 (like during Game Over)
+        sfxSource.ignoreListenerPause = true;
+        musicSource.ignoreListenerPause = true;
     }
 
     public void PlayEventSpawn() => PlaySFX(eventSpawnClip);
@@ -51,23 +70,37 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySFX(AudioClip clip)
     {
-        if (clip != null && sfxSource != null)
+        if (clip == null)
         {
-            sfxSource.PlayOneShot(clip);
+            Debug.LogWarning("AudioManager: Attempted to play a null SFX clip. Did you assign it in the Inspector?");
+            return;
         }
-        else if (clip == null)
+
+        if (sfxSource == null)
         {
-            Debug.LogWarning("AudioManager: Attempted to play a null SFX clip.");
+            Debug.LogWarning($"AudioManager: sfxSource is null! Cannot play {clip.name}");
+            return;
         }
+
+        sfxSource.PlayOneShot(clip);
     }
 
     public void PlayMusic(AudioClip clip, bool loop = true)
     {
-        if (clip != null && musicSource != null)
+        if (clip == null)
         {
-            musicSource.clip = clip;
-            musicSource.loop = loop;
-            musicSource.Play();
+            Debug.LogWarning("AudioManager: Attempted to play a null Music clip. Did you assign it in the Inspector?");
+            return;
         }
+
+        if (musicSource == null)
+        {
+            Debug.LogWarning($"AudioManager: musicSource is null! Cannot play {clip.name}");
+            return;
+        }
+
+        musicSource.clip = clip;
+        musicSource.loop = loop;
+        musicSource.Play();
     }
 }
