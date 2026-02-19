@@ -31,8 +31,6 @@ public class UIManager : MonoBehaviour
     [Header("Police Units")]
     [SerializeField] private Image[] policeUnitIcons;
     [SerializeField] private Slider policeRegenSlider;
-    [SerializeField] private Color unitAvailableColor = Color.blue;
-    [SerializeField] private Color unitUsedColor = Color.gray;
     
     private CrimeEvent currentEvent;
     private GameObject currentIcon;
@@ -157,14 +155,7 @@ public class UIManager : MonoBehaviour
             {
                 if (policeUnitIcons[i] != null)
                 {
-                    if (i < PoliceManager.Instance.currentUnits)
-                    {
-                        policeUnitIcons[i].color = unitAvailableColor;
-                    }
-                    else
-                    {
-                        policeUnitIcons[i].color = unitUsedColor;
-                    }
+                    policeUnitIcons[i].gameObject.SetActive(i < PoliceManager.Instance.currentUnits);
                 }
             }
         }
