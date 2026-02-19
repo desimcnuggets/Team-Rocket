@@ -10,13 +10,13 @@ public class BoroughGrouper : MonoBehaviour
     [Header("Source")]
     public Transform cityRoot; // The parent containing all mixed buildings
 
-    [Header("Borough Centers (Create objects and place them in scene)")]
-    public Transform greenwichCenter;
-    public Transform westminsterCenter;
-    public Transform lambethCenter;
-    public Transform hillingdonCenter;
-    public Transform kensingtonCenter;
-    public Transform camdenCenter;
+    [Header("Borough Colliders (Assign the Lock/Area colliders)")]
+    public Collider greenwichCollider;
+    public Collider westminsterCollider;
+    public Collider lambethCollider;
+    public Collider hillingdonCollider;
+    public Collider kensingtonCollider;
+    public Collider camdenCollider;
 
     [Header("Output Containers (Generated Automatically if Empty)")]
     public Transform greenwichContainer;
@@ -56,8 +56,8 @@ public class BoroughGrouper : MonoBehaviour
             Transform closest = FindClosestBorough(child.position);
             if (closest != null)
             {
-                // Map center to container
-                Transform targetContainer = GetContainerForCenter(closest);
+                // Map collider to container
+                Transform targetContainer = GetContainerForCollider(closest);
                 if (targetContainer != null)
                 {
                     #if UNITY_EDITOR
@@ -75,39 +75,57 @@ public class BoroughGrouper : MonoBehaviour
 
     Transform FindClosestBorough(Vector3 pos)
     {
+        // 1. Check if inside bounds (Priority)
+        if (IsInside(greenwichCollider, pos)) return greenwichCollider.transform;
+        if (IsInside(westminsterCollider, pos)) return westminsterCollider.transform;
+        if (IsInside(lambethCollider, pos)) return lambethCollider.transform;
+        if (IsInside(hillingdonCollider, pos)) return hillingdonCollider.transform;
+        if (IsInside(kensingtonCollider, pos)) return kensingtonCollider.transform;
+        if (IsInside(camdenCollider, pos)) return camdenCollider.transform;
+
+        // 2. Fallback to closest distance center
         Transform closest = null;
         float minDst = float.MaxValue;
 
-        // Helper to keep code clean
-        void Check(Transform center)
+        Checkdist(greenwichCollider);
+        Checkdist(westminsterCollider);
+        Checkdist(lambethCollider);
+        Checkdist(hillingdonCollider);
+        Checkdist(kensingtonCollider);
+        Checkdist(camdenCollider);
+
+        void Checkdist(Collider col)
         {
-            if (center == null) return;
-            float dst = Vector3.Distance(pos, center.position);
+            if (col == null) return;
+            // Use closest point on bounds to get a rough distance if outside
+            Vector3 closestPoint = col.ClosestPoint(pos);
+            float dst = Vector3.Distance(pos, closestPoint);
+            
             if (dst < minDst)
             {
                 minDst = dst;
-                closest = center;
+                closest = col.transform;
             }
         }
-
-        Check(greenwichCenter);
-        Check(westminsterCenter);
-        Check(lambethCenter);
-        Check(hillingdonCenter);
-        Check(kensingtonCenter);
-        Check(camdenCenter);
 
         return closest;
     }
 
-    Transform GetContainerForCenter(Transform center)
+    bool IsInside(Collider col, Vector3 pos)
     {
-        if (center == greenwichCenter) return greenwichContainer;
-        if (center == westminsterCenter) return westminsterContainer;
-        if (center == lambethCenter) return lambethContainer;
-        if (center == hillingdonCenter) return hillingdonContainer;
-        if (center == kensingtonCenter) return kensingtonContainer;
-        if (center == camdenCenter) return camdenContainer;
+        if (col == null) return false;
+        return col.bounds.Contains(pos);
+    }
+
+    Transform GetContainerForCollider(Transform hitTransform)
+    {
+        // We are comparing the transform of the collider we found
+        if (greenwichCollider != null && hitTransform == greenwichCollider.transform) return greenwichContainer;
+        if (westminsterCollider != null && hitTransform == westminsterCollider.transform) return westminsterContainer;
+        if (lambethCollider != null && hitTransform == lambethCollider.transform) return lambethContainer;
+        if (hillingdonCollider != null && hitTransform == hillingdonCollider.transform) return hillingdonContainer;
+        if (kensingtonCollider != null && hitTransform == kensingtonCollider.transform) return kensingtonContainer;
+        if (camdenCollider != null && hitTransform == camdenCollider.transform) return camdenContainer;
         return null;
     }
 
