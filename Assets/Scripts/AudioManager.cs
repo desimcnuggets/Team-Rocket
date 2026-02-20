@@ -9,23 +9,30 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource musicSource;
 
     [Header("Audio Clips")]
-    //A quiet police radio crackle
-    [SerializeField] private AudioClip eventSpawnClip;
+    // Soft typewriter clack
+    [SerializeField] private AudioClip crimeSpawnClip;
     
-    //A stamp sound. Satisfying. Final
-    [SerializeField] private AudioClip raidClickClip;
+    // File stamp thud
+    [SerializeField] private AudioClip iconClickClip;
     
-    //A file drawer closing. Dismissive
-    [SerializeField] private AudioClip ignoreClickClip;
+    // Radio crackle + brief static
+    [SerializeField] private AudioClip raidActionClip;
     
-    //A distant siren getting closer
-    [SerializeField] private AudioClip escalationTriggerClip;
+    // Cash register ding
+    [SerializeField] private AudioClip ignoreActionClip;
     
-    //A letter being opened
-    [SerializeField] private AudioClip fundingReviewClip;
+    // Urgent alarm stab
+    [SerializeField] private AudioClip escalationSpawnClip;
     
-    //The BBC News opening theme, wrong
+    // Low tension drone begins
+    [SerializeField] private AudioClip anarchyDroneClip;
+    
+    // Newspaper printing press SFX
     [SerializeField] private AudioClip gameOverClip;
+
+    [Header("Music")]
+    // Single low-tempo jazz/bureaucratic loop
+    [SerializeField] private AudioClip backgroundMusicClip;
 
     private void Awake()
     {
@@ -43,7 +50,6 @@ public class AudioManager : MonoBehaviour
         {
             sfxSource = gameObject.AddComponent<AudioSource>();
             sfxSource.spatialBlend = 0f;
-            Debug.Log("AudioManager: sfxSource was not assigned. Adding a default AudioSource.");
         }
 
         if (musicSource == null)
@@ -51,20 +57,38 @@ public class AudioManager : MonoBehaviour
             musicSource = gameObject.AddComponent<AudioSource>();
             musicSource.spatialBlend = 0f;
             musicSource.loop = true;
-            Debug.Log("AudioManager: musicSource was not assigned. Adding a default AudioSource.");
         }
 
         sfxSource.ignoreListenerPause = true;
         musicSource.ignoreListenerPause = true;
     }
 
-    public void PlayEventSpawn() => PlaySFX(eventSpawnClip);
-    public void PlayRaidClick() => PlaySFX(raidClickClip);
-    public void PlayIgnoreClick() => PlaySFX(ignoreClickClip);
-    public void PlayEscalationTrigger() => PlaySFX(escalationTriggerClip);
-    public void PlayFundingReview() => PlaySFX(fundingReviewClip);
-    
-    // Using PlaySFX or PlayMusic for Game Over depending on how you want it, SFX default
+    void Start()
+    {
+        if (backgroundMusicClip != null)
+        {
+            PlayMusic(backgroundMusicClip);
+        }
+    }
+
+    public void PlayCrimeSpawn() => PlaySFX(crimeSpawnClip);
+    public void PlayIconClick() => PlaySFX(iconClickClip);
+    public void PlayRaidAction() => PlaySFX(raidActionClip);
+    public void PlayIgnoreAction() => PlaySFX(ignoreActionClip);
+    public void PlayEscalationSpawn() => PlaySFX(escalationSpawnClip);
+    public void PlayAnarchyDrone(bool play)
+    {
+        if (play)
+        {
+            if (musicSource.clip != anarchyDroneClip)
+                PlayMusic(anarchyDroneClip);
+        }
+        else
+        {
+            if (musicSource.clip == anarchyDroneClip)
+                PlayMusic(backgroundMusicClip);
+        }
+    }
     public void PlayGameOver() => PlaySFX(gameOverClip); 
 
     public void PlaySFX(AudioClip clip)

@@ -110,7 +110,7 @@ public class CrimeManager : MonoBehaviour
         icon.GetComponent<CrimeIcon>().Initialize(evt);
         activeEvents.Add(icon);
         
-        if (AudioManager.Instance != null) AudioManager.Instance.PlayEventSpawn();
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayCrimeSpawn();
     }
     
     Vector3 GetRandomPositionOnBorough(Borough borough)
@@ -216,7 +216,7 @@ public class CrimeManager : MonoBehaviour
                 {
                     if (entry.originalEvent.escalatesTo != null)
                     {
-                        if (AudioManager.Instance != null) AudioManager.Instance.PlayEscalationTrigger();
+                        if (AudioManager.Instance != null) AudioManager.Instance.PlayEscalationSpawn();
                         ForceSpawnEvent(entry.originalEvent.escalatesTo, entry.borough);
                         
                         // Escalation Damage
@@ -248,6 +248,6 @@ public class CrimeManager : MonoBehaviour
         icon.GetComponent<CrimeIcon>().Initialize(evt);
         activeEvents.Add(icon);
         
-        if (AudioManager.Instance != null) AudioManager.Instance.PlayEventSpawn();
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayCrimeSpawn();
     }
 }

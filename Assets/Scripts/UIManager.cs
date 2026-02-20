@@ -60,6 +60,8 @@ public class UIManager : MonoBehaviour
     {
         if (decisionCardPanel == null) return;
         
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayIconClick();
+        
         decisionCardPanel.SetActive(true);
         currentEvent = evt;
         currentIcon = iconObject;
@@ -85,7 +87,7 @@ public class UIManager : MonoBehaviour
     public void OnRaidClicked()
     {
         Debug.Log("Raid Clicked");
-        if (AudioManager.Instance != null) AudioManager.Instance.PlayRaidClick();
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayRaidAction();
         if (EconomyManager.Instance == null) return;
         
         // CHECK POLICE UNITS
@@ -194,7 +196,7 @@ public class UIManager : MonoBehaviour
     {
         if (currentEvent == null) return;
         
-        if (AudioManager.Instance != null) AudioManager.Instance.PlayIgnoreClick();
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayIgnoreAction();
         
         if (EconomyManager.Instance != null)
         {
@@ -261,6 +263,12 @@ public class UIManager : MonoBehaviour
             else
             {
                 isAnarchy = true;
+                if (AudioManager.Instance != null) AudioManager.Instance.PlayAnarchyDrone(true);
+            }
+
+            if (!isAnarchy && AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlayAnarchyDrone(false);
             }
         }
         
