@@ -197,6 +197,26 @@ public class UIManager : MonoBehaviour
             ColorUtility.TryParseHtmlString("#EF4444", out Color c);
             crimeBarFill.color = Color.Lerp(c, new Color(c.r * 0.5f, 0f, 0f), t);
         }
+
+        // Keyboard Shortcuts for Decision Card
+        if (IsDecisionPanelOpen && (PauseMenuController.Instance == null || !PauseMenuController.Instance.IsPaused))
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                OnRaidClicked();
+            }
+            else if (Input.GetKeyDown(KeyCode.I))
+            {
+                OnIgnoreClicked();
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.Q) && (PauseMenuController.Instance == null || !PauseMenuController.Instance.IsPaused))
+        {
+            if (CrimeManager.Instance != null)
+            {
+                CrimeManager.Instance.OpenRandomDecisionCard();
+            }
+        }
     }
 
     void UpdatePoliceUI()

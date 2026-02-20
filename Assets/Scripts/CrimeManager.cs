@@ -9,6 +9,7 @@ public class CrimeManager : MonoBehaviour
     public float naturalDrift = 0.5f;
     [SerializeField] private float spawnInterval = 4f;
     [SerializeField] private GameObject crimeIconPrefab;
+    [SerializeField] private int maxActiveEvents = 15;
     
     private float nextSpawnTime;
     private float nextDriftTime;
@@ -64,7 +65,11 @@ public class CrimeManager : MonoBehaviour
         
         if (Time.time >= nextSpawnTime)
         {
-            SpawnRandomEvent();
+            PruneActiveEvents();
+            if (activeEvents.Count < maxActiveEvents)
+            {
+                SpawnRandomEvent();
+            }
             nextSpawnTime = Time.time + spawnInterval;
         }
         
@@ -255,6 +260,9 @@ public class CrimeManager : MonoBehaviour
     {
         if (BoroughManager.Instance == null) return;
         
+        PruneActiveEvents();
+        if (activeEvents.Count >= maxActiveEvents) return;
+
         Borough b = BoroughManager.Instance.GetBorough(borough);
         if (b == null || b.boroughModel == null) return;
         
@@ -264,5 +272,27 @@ public class CrimeManager : MonoBehaviour
         activeEvents.Add(icon);
         
         if (AudioManager.Instance != null) AudioManager.Instance.PlayCrimeSpawn();
+    }
+
+    private void PruneActiveEvents()
+    {
+        activeEvents.RemoveAll(item => item == null);
+    }
+
+    public void OpenRandomDecisionCard()
+    {
+        if (UIManager.Instance != null && UIManager.Instance.IsDecisionPanelOpen) return;
+
+        PruneActiveEvents();
+        if (activeEvents.Count == 0) return;
+
+        int randomIndex = Random.Range(0, activeEvents.Count);
+        GameObject iconObj = activeEvents[randomIndex];
+        CrimeIcon icon = iconObj.GetComponent<CrimeIcon>();
+
+        if (icon != null && icon.EventData != null)
+        {
+            UIManager.Instance.ShowDecisionCard(icon.EventData, iconObj);
+        }
     }
 }

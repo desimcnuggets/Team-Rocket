@@ -5,6 +5,7 @@ using UnityEngine;
 public class CrimeIcon : MonoBehaviour
 {
     private CrimeEvent eventData;
+    public CrimeEvent EventData => eventData;
     private Camera mainCamera;
     
     [SerializeField] private float iconScale = 5f;
