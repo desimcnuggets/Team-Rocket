@@ -40,11 +40,23 @@ public class EconomyManager : MonoBehaviour
     
     public void TriggerFundingReview()
     {
-        if (AudioManager.Instance != null) AudioManager.Instance.PlayFundingReview();
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayRaidAction();
+        
+        float reviewPenalty = 1000f; // Base penalty
+        string penaltyMessage = "FUNDING REVIEW: Commissioner asked to justify budget allocation. -£1000";
+        
+        // Economy Low Penalty
+        if (SecondaryStatsManager.Instance != null && SecondaryStatsManager.Instance.GetEconomyTier() == StatTier.Low)
+        {
+             reviewPenalty *= 1.5f;
+             penaltyMessage = "FUNDING REVIEW: Poor economy increases budget cuts! -£1500";
+        }
+        
+        DeductFunds(reviewPenalty);
         
         if (UIManager.Instance != null)
         {
-            UIManager.Instance.UpdateTicker("FUNDING REVIEW: Commissioner asked to justify budget allocation");
+            UIManager.Instance.UpdateTicker(penaltyMessage);
         }
     }
     

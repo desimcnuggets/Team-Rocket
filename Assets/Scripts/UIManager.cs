@@ -24,6 +24,12 @@ public class UIManager : MonoBehaviour
     
     [Header("News Ticker")]
     [SerializeField] private TextMeshProUGUI newsTickerText;
+    [SerializeField] private NewsTicker newsTicker;
+    
+    [Header("Secondary Stats")]
+    [SerializeField] private TextMeshProUGUI economyText;
+    [SerializeField] private TextMeshProUGUI publicTrustText;
+    [SerializeField] private TextMeshProUGUI coolFactorText;
     
     [Header("Loss Screen")]
     [SerializeField] private GameObject lossScreenPanel;
@@ -64,6 +70,8 @@ public class UIManager : MonoBehaviour
     {
         if (decisionCardPanel == null) return;
         
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayIconClick();
+        
         decisionCardPanel.SetActive(true);
         currentEvent = evt;
         currentIcon = iconObject;
@@ -89,7 +97,7 @@ public class UIManager : MonoBehaviour
     public void OnRaidClicked()
     {
         Debug.Log("Raid Clicked");
-        if (AudioManager.Instance != null) AudioManager.Instance.PlayRaidClick();
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayRaidAction();
         if (EconomyManager.Instance == null) return;
         
         // CHECK POLICE UNITS
@@ -108,19 +116,32 @@ public class UIManager : MonoBehaviour
         EconomyManager.Instance.DeductFunds(1000);
         PoliceManager.Instance.ConsumeUnit();
         
-        if (CrimeManager.Instance != null)
-        {
-            CrimeManager.Instance.ModifyCrimeRate(-3);
-        }
-        
         if (BoroughManager.Instance != null && currentEvent != null)
         {
-            BoroughManager.Instance.IncreaseMood(currentEvent.borough, 1);
+            BoroughManager.Instance.ProcessRaidMechanics(currentEvent);
         }
         
         if (currentEvent != null)
         {
             UpdateTicker(currentEvent.tickerRaid);
+            
+            // Check Trust Penalty: Civil Unrest RAID increases crime
+            if (SecondaryStatsManager.Instance != null && SecondaryStatsManager.Instance.GetTrustTier() == StatTier.Low && currentEvent.category == CrimeCategory.CivilUnrest)
+            {
+                if (CrimeManager.Instance != null) CrimeManager.Instance.ModifyCrimeRate(5); // Increase rather than decrease
+            }
+            else
+            {
+                if (CrimeManager.Instance != null) CrimeManager.Instance.ModifyCrimeRate(-3); // Normal reduce
+            }
+            
+            // Apply Secondary Stats
+            if (SecondaryStatsManager.Instance != null)
+            {
+                SecondaryStatsManager.Instance.ModifyEconomy(currentEvent.raidEconomyChange);
+                SecondaryStatsManager.Instance.ModifyTrust(currentEvent.raidTrustChange);
+                SecondaryStatsManager.Instance.ModifyCool(currentEvent.raidCoolChange);
+            }
         }
         
         if (currentIcon != null)
@@ -178,7 +199,7 @@ public class UIManager : MonoBehaviour
     {
         if (currentEvent == null) return;
         
-        if (AudioManager.Instance != null) AudioManager.Instance.PlayIgnoreClick();
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayIgnoreAction();
         
         if (EconomyManager.Instance != null)
         {
@@ -193,10 +214,18 @@ public class UIManager : MonoBehaviour
         
         if (BoroughManager.Instance != null)
         {
-            BoroughManager.Instance.DecreaseMood(currentEvent.borough, 2);
+            BoroughManager.Instance.ProcessIgnoreMechanics(currentEvent);
         }
         
         UpdateTicker(currentEvent.tickerIgnore);
+        
+        // Apply Secondary Stats
+        if (SecondaryStatsManager.Instance != null)
+        {
+            SecondaryStatsManager.Instance.ModifyEconomy(currentEvent.ignoreEconomyChange);
+            SecondaryStatsManager.Instance.ModifyTrust(currentEvent.ignoreTrustChange);
+            SecondaryStatsManager.Instance.ModifyCool(currentEvent.ignoreCoolChange);
+        }
         
         if (currentIcon != null)
         {
@@ -237,6 +266,12 @@ public class UIManager : MonoBehaviour
             else
             {
                 isAnarchy = true;
+                if (AudioManager.Instance != null) AudioManager.Instance.PlayAnarchyDrone(true);
+            }
+
+            if (!isAnarchy && AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlayAnarchyDrone(false);
             }
         }
         
@@ -296,10 +331,23 @@ public class UIManager : MonoBehaviour
     
     public void UpdateTicker(string message)
     {
-        if (newsTickerText != null)
+        if (newsTicker != null)
+        {
+            newsTicker.AddMessage(message);
+        }
+        else if (newsTickerText != null)
         {
             newsTickerText.text = message;
         }
+    }
+    
+    public void UpdateSecondaryStatsUI()
+    {
+        if (SecondaryStatsManager.Instance == null) return;
+        
+        if (economyText != null) economyText.text = $"Economy: {SecondaryStatsManager.Instance.economyStat}";
+        if (publicTrustText != null) publicTrustText.text = $"Trust: {SecondaryStatsManager.Instance.publicTrustStat}";
+        if (coolFactorText != null) coolFactorText.text = $"Cool: {SecondaryStatsManager.Instance.coolFactorStat}";
     }
     
     public void ShowLossScreen(string reason)

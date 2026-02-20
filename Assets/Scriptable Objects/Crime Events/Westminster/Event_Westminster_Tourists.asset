@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventName: Tourist Pickpockets
   borough: 0
-  category: 0
+  category: 4
   crimeRateChange: 2
   bribeValue: 300
   victimDescription: Confused tourist missing their wallet
