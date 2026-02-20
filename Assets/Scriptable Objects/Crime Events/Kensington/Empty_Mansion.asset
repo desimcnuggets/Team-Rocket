@@ -27,3 +27,9 @@ MonoBehaviour:
     Monaco also cannot be reached.
   escalatesTo: {fileID: 11400000, guid: f00c6daf7e74f5404ea2a74363fb2ab8, type: 2}
   escalationChance: 0.5
+  raidEconomyChange: 11
+  raidTrustChange: 1
+  raidCoolChange: 1
+  ignoreEconomyChange: -1
+  ignoreTrustChange: -1
+  ignoreCoolChange: -1

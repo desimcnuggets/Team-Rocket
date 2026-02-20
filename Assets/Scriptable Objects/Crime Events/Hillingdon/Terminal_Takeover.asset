@@ -27,3 +27,9 @@ MonoBehaviour:
     modelled their operational structure.
   escalatesTo: {fileID: 11400000, guid: 49d82043153dfd54080204e262e086c0, type: 2}
   escalationChance: 0
+  raidEconomyChange: 1
+  raidTrustChange: 1
+  raidCoolChange: 1
+  ignoreEconomyChange: -1
+  ignoreTrustChange: -1
+  ignoreCoolChange: -1

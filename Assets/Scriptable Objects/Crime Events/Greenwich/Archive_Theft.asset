@@ -27,3 +27,9 @@ MonoBehaviour:
     Staff member extradited. New kitchen examined.
   escalatesTo: {fileID: 11400000, guid: 75553ec8a40bd6740be34dccc29cce72, type: 2}
   escalationChance: 0.5
+  raidEconomyChange: 1
+  raidTrustChange: 1
+  raidCoolChange: 1
+  ignoreEconomyChange: -1
+  ignoreTrustChange: -1
+  ignoreCoolChange: -1

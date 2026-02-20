@@ -26,3 +26,9 @@ MonoBehaviour:
     thoughtfully lit maritime exhibition.
   escalatesTo: {fileID: 11400000, guid: 83ce302bf4f9f424eacbf4361eac44ac, type: 2}
   escalationChance: 0.5
+  raidEconomyChange: 1
+  raidTrustChange: 1
+  raidCoolChange: 1
+  ignoreEconomyChange: -1
+  ignoreTrustChange: -1
+  ignoreCoolChange: -1

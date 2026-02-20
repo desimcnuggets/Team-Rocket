@@ -27,3 +27,9 @@ MonoBehaviour:
     Council apologises for fox comment.
   escalatesTo: {fileID: 11400000, guid: d449fb86bd679714492ca45d350e86bd, type: 2}
   escalationChance: 0
+  raidEconomyChange: 1
+  raidTrustChange: 1
+  raidCoolChange: 1
+  ignoreEconomyChange: -1
+  ignoreTrustChange: -1
+  ignoreCoolChange: -1

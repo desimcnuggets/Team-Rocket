@@ -27,3 +27,9 @@ MonoBehaviour:
     calls hat a long-term investment.
   escalatesTo: {fileID: 11400000, guid: e4da96076539f452d91159d84dc2a71a, type: 2}
   escalationChance: 0.5
+  raidEconomyChange: 1
+  raidTrustChange: 1
+  raidCoolChange: 1
+  ignoreEconomyChange: -1
+  ignoreTrustChange: -1
+  ignoreCoolChange: -1

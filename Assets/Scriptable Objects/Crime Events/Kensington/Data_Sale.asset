@@ -27,3 +27,9 @@ MonoBehaviour:
     fine as 'a rounding error'.
   escalatesTo: {fileID: 0}
   escalationChance: 0
+  raidEconomyChange: 2
+  raidTrustChange: 2
+  raidCoolChange: 2
+  ignoreEconomyChange: -1
+  ignoreTrustChange: -1
+  ignoreCoolChange: -1

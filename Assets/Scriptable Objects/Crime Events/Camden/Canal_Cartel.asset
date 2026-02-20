@@ -27,3 +27,9 @@ MonoBehaviour:
     to do it.
   escalatesTo: {fileID: 11400000, guid: d6bcda9299cb6314f9015aa6ee0ca449, type: 2}
   escalationChance: 0
+  raidEconomyChange: 1
+  raidTrustChange: 1
+  raidCoolChange: 1
+  ignoreEconomyChange: -1
+  ignoreTrustChange: -1
+  ignoreCoolChange: -1

@@ -27,3 +27,9 @@ MonoBehaviour:
     recovered. Gary the pothole finally fixed. Nation mourns."
   escalatesTo: {fileID: 11400000, guid: d0c0b78f3c5c68c44b32880d18de8bc6, type: 2}
   escalationChance: 0.5
+  raidEconomyChange: 1
+  raidTrustChange: 1
+  raidCoolChange: 1
+  ignoreEconomyChange: -1
+  ignoreTrustChange: -1
+  ignoreCoolChange: -1

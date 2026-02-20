@@ -27,3 +27,9 @@ MonoBehaviour:
     share tips, and one unironic meme.
   escalatesTo: {fileID: 11400000, guid: 9bfb48f069e3d1b438bf8bbf9770ecfd, type: 2}
   escalationChance: 0.5
+  raidEconomyChange: 1
+  raidTrustChange: 1
+  raidCoolChange: 1
+  ignoreEconomyChange: -1
+  ignoreTrustChange: -1
+  ignoreCoolChange: -1

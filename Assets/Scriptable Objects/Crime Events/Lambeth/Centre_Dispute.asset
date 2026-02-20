@@ -27,3 +27,9 @@ MonoBehaviour:
     Council officers still on annual leave.
   escalatesTo: {fileID: 11400000, guid: 07b261d3b06cce443a783a780f77752a, type: 2}
   escalationChance: 0
+  raidEconomyChange: 1
+  raidTrustChange: 1
+  raidCoolChange: 1
+  ignoreEconomyChange: -1
+  ignoreTrustChange: -1
+  ignoreCoolChange: -1

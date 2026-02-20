@@ -27,3 +27,9 @@ MonoBehaviour:
     Forensics confirm it did not.
   escalatesTo: {fileID: 11400000, guid: 89612e37963dd544387c1f9b25e7d9be, type: 2}
   escalationChance: 0.5
+  raidEconomyChange: 1
+  raidTrustChange: 1
+  raidCoolChange: 1
+  ignoreEconomyChange: -1
+  ignoreTrustChange: -1
+  ignoreCoolChange: -1

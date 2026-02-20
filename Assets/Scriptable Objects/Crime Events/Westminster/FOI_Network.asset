@@ -26,3 +26,9 @@ MonoBehaviour:
     itself subject to FOI. Request deleted.
   escalatesTo: {fileID: 11400000, guid: 88de86cb30f247c418391710d0027f48, type: 2}
   escalationChance: 0
+  raidEconomyChange: 1
+  raidTrustChange: 1
+  raidCoolChange: 1
+  ignoreEconomyChange: -1
+  ignoreTrustChange: -1
+  ignoreCoolChange: -1

@@ -27,3 +27,9 @@ MonoBehaviour:
     landlord owes \xA34.2m in back tax."
   escalatesTo: {fileID: 11400000, guid: fed530b10ee8a58015afdaa59fcf8048, type: 2}
   escalationChance: 0.5
+  raidEconomyChange: 1
+  raidTrustChange: 1
+  raidCoolChange: 1
+  ignoreEconomyChange: -1
+  ignoreTrustChange: -1
+  ignoreCoolChange: -1

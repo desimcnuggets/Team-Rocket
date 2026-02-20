@@ -27,3 +27,9 @@ MonoBehaviour:
     proceeds. Protest doubles in size.
   escalatesTo: {fileID: 11400000, guid: 3f7d9b1d7f43dc2429889b1b42cb1ca0, type: 2}
   escalationChance: 0.5
+  raidEconomyChange: 1
+  raidTrustChange: 1
+  raidCoolChange: 1
+  ignoreEconomyChange: -1
+  ignoreTrustChange: -1
+  ignoreCoolChange: -1

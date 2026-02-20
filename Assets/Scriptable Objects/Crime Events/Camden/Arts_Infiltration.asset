@@ -27,3 +27,9 @@ MonoBehaviour:
     meeting. Votes to make better art about it.
   escalatesTo: {fileID: 11400000, guid: d3991802f3144b25fb8294b995d39a4f, type: 2}
   escalationChance: 0.5
+  raidEconomyChange: 1
+  raidTrustChange: 1
+  raidCoolChange: 1
+  ignoreEconomyChange: -1
+  ignoreTrustChange: -1
+  ignoreCoolChange: -1

@@ -27,3 +27,9 @@ MonoBehaviour:
     to a boat called Tranquillity.
   escalatesTo: {fileID: 11400000, guid: f3090ab209c73eea47f8dc19bbee00d0, type: 2}
   escalationChance: 0.5
+  raidEconomyChange: 1
+  raidTrustChange: 1
+  raidCoolChange: 1
+  ignoreEconomyChange: -1
+  ignoreTrustChange: -1
+  ignoreCoolChange: -1

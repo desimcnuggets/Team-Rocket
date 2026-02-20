@@ -26,3 +26,9 @@ MonoBehaviour:
     for comment.
   escalatesTo: {fileID: 11400000, guid: 5ba982e21ba71714a8385f45677683cd, type: 2}
   escalationChance: 0.5
+  raidEconomyChange: 1
+  raidTrustChange: 1
+  raidCoolChange: 1
+  ignoreEconomyChange: -1
+  ignoreTrustChange: -1
+  ignoreCoolChange: -1

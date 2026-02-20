@@ -27,3 +27,9 @@ MonoBehaviour:
     police van attending the arrest.
   escalatesTo: {fileID: 11400000, guid: ba4edef0c4a15cb43af689f69687bd86, type: 2}
   escalationChance: 0.5
+  raidEconomyChange: 1
+  raidTrustChange: 1
+  raidCoolChange: 1
+  ignoreEconomyChange: -1
+  ignoreTrustChange: -1
+  ignoreCoolChange: -1

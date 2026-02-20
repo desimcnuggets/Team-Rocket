@@ -27,3 +27,9 @@ MonoBehaviour:
     'a conceptual piece about value'. Judge disagrees.
   escalatesTo: {fileID: 11400000, guid: 7136c601826d4cec831cc478aa805deb, type: 2}
   escalationChance: 0.5
+  raidEconomyChange: 1
+  raidTrustChange: 1
+  raidCoolChange: 1
+  ignoreEconomyChange: -1
+  ignoreTrustChange: -1
+  ignoreCoolChange: -1

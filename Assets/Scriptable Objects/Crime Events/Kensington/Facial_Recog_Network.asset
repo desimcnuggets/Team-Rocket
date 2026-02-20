@@ -27,3 +27,9 @@ MonoBehaviour:
     deleted. Association files formal complaint about deletion.
   escalatesTo: {fileID: 11400000, guid: ef6703a3de4ac4244b4e5725f0a9baa2, type: 2}
   escalationChance: 0.5
+  raidEconomyChange: 1
+  raidTrustChange: 1
+  raidCoolChange: 1
+  ignoreEconomyChange: -1
+  ignoreTrustChange: -1
+  ignoreCoolChange: -1

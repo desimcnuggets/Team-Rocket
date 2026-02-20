@@ -27,3 +27,9 @@ MonoBehaviour:
     its first visitor in three weeks.
   escalatesTo: {fileID: 11400000, guid: 71491b70d79a7454ba2c950dcd548d63, type: 2}
   escalationChance: 0.5
+  raidEconomyChange: 1
+  raidTrustChange: 1
+  raidCoolChange: 1
+  ignoreEconomyChange: -1
+  ignoreTrustChange: -1
+  ignoreCoolChange: -1

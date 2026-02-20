@@ -27,3 +27,9 @@ MonoBehaviour:
     fined. Fine is less than the dumping saved them.
   escalatesTo: {fileID: 11400000, guid: d732491e86ab417d9ff1dd2314d3f760, type: 2}
   escalationChance: 0.5
+  raidEconomyChange: 1
+  raidTrustChange: 1
+  raidCoolChange: 1
+  ignoreEconomyChange: -1
+  ignoreTrustChange: -1
+  ignoreCoolChange: -1

@@ -27,3 +27,9 @@ MonoBehaviour:
     immunity. Both granted.
   escalatesTo: {fileID: 11400000, guid: e341a0892a6dc525bc037fdab84e933d, type: 2}
   escalationChance: 0.5
+  raidEconomyChange: 1
+  raidTrustChange: 1
+  raidCoolChange: 1
+  ignoreEconomyChange: -1
+  ignoreTrustChange: -1
+  ignoreCoolChange: -1

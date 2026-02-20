@@ -27,3 +27,9 @@ MonoBehaviour:
     screens before they were stolen.
   escalatesTo: {fileID: 11400000, guid: afc3d0542d6d6020e2a64afc6b05e268, type: 2}
   escalationChance: 0.5
+  raidEconomyChange: 1
+  raidTrustChange: 1
+  raidCoolChange: 1
+  ignoreEconomyChange: -1
+  ignoreTrustChange: -1
+  ignoreCoolChange: -1

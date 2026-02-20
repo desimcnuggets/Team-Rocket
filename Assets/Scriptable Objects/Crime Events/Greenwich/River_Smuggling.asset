@@ -26,3 +26,9 @@ MonoBehaviour:
   tickerRaid: Greenwich river gang intercepted. Four boats seized. Gang acquires
   escalatesTo: {fileID: 11400000, guid: a278f61d3e15601582d406de2f9febf3, type: 2}
   escalationChance: 0.5
+  raidEconomyChange: 1
+  raidTrustChange: 1
+  raidCoolChange: 1
+  ignoreEconomyChange: -1
+  ignoreTrustChange: -1
+  ignoreCoolChange: -1

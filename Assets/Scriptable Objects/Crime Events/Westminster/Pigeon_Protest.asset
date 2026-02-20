@@ -27,3 +27,9 @@ MonoBehaviour:
     for comment. Pigeons remain ungrateful.
   escalatesTo: {fileID: 11400000, guid: 33ee3b9182a029125edca04253179d2c, type: 2}
   escalationChance: 0.5
+  raidEconomyChange: 1
+  raidTrustChange: 1
+  raidCoolChange: 1
+  ignoreEconomyChange: -1
+  ignoreTrustChange: -1
+  ignoreCoolChange: -1

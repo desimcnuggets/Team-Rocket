@@ -27,3 +27,9 @@ MonoBehaviour:
     Juliet balcony remains. Irony noted by all.
   escalatesTo: {fileID: 11400000, guid: f4dcf014069b4ef4e8832a3aa683cd90, type: 2}
   escalationChance: 0
+  raidEconomyChange: 1
+  raidTrustChange: 1
+  raidCoolChange: 1
+  ignoreEconomyChange: -1
+  ignoreTrustChange: -1
+  ignoreCoolChange: -1

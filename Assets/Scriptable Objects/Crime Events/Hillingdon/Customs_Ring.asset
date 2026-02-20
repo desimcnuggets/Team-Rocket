@@ -27,3 +27,9 @@ MonoBehaviour:
     Had 47 members and a bot.
   escalatesTo: {fileID: 11400000, guid: fad8143c05120b69cdfd0e30d9598083, type: 2}
   escalationChance: 0.5
+  raidEconomyChange: 1
+  raidTrustChange: 1
+  raidCoolChange: 1
+  ignoreEconomyChange: -1
+  ignoreTrustChange: -1
+  ignoreCoolChange: -1

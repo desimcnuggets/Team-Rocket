@@ -27,3 +27,9 @@ MonoBehaviour:
     Installs slightly better lighting.
   escalatesTo: {fileID: 11400000, guid: 9e31c845e5799ad4da50d6756d3ee439, type: 2}
   escalationChance: 0.5
+  raidEconomyChange: 1
+  raidTrustChange: 1
+  raidCoolChange: 1
+  ignoreEconomyChange: -1
+  ignoreTrustChange: -1
+  ignoreCoolChange: -1

@@ -27,3 +27,9 @@ MonoBehaviour:
     resign. Headteacher gets pay rise.
   escalatesTo: {fileID: 11400000, guid: 0aa73dc91662b3249b73176036529293, type: 2}
   escalationChance: 0.5
+  raidEconomyChange: 11
+  raidTrustChange: 1
+  raidCoolChange: 1
+  ignoreEconomyChange: -1
+  ignoreTrustChange: -1
+  ignoreCoolChange: -1

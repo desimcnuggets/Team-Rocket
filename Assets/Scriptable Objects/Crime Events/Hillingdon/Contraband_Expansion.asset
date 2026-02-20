@@ -27,3 +27,9 @@ MonoBehaviour:
     contracts 0.4% briefly.
   escalatesTo: {fileID: 11400000, guid: ff8a80d3dbcaf8f48815741bd581b13f, type: 2}
   escalationChance: 0
+  raidEconomyChange: 1
+  raidTrustChange: 1
+  raidCoolChange: 1
+  ignoreEconomyChange: -1
+  ignoreTrustChange: -1
+  ignoreCoolChange: -1

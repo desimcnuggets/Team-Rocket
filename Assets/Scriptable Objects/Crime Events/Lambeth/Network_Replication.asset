@@ -27,3 +27,9 @@ MonoBehaviour:
     provision in five postcodes.
   escalatesTo: {fileID: 11400000, guid: ce4dd7a8bf11bdf4dbde039879edb69f, type: 2}
   escalationChance: 0
+  raidEconomyChange: 1
+  raidTrustChange: 1
+  raidCoolChange: 1
+  ignoreEconomyChange: -1
+  ignoreTrustChange: -1
+  ignoreCoolChange: -1

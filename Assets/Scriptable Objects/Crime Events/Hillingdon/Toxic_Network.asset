@@ -26,3 +26,9 @@ MonoBehaviour:
   tickerRaid: West London toxic waste network dismantled. Six sites
   escalatesTo: {fileID: 0}
   escalationChance: 0
+  raidEconomyChange: 1
+  raidTrustChange: 1
+  raidCoolChange: 1
+  ignoreEconomyChange: -1
+  ignoreTrustChange: -1
+  ignoreCoolChange: -1

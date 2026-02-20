@@ -26,3 +26,9 @@ MonoBehaviour:
   tickerRaid: Youth centre county lines operation busted. Centre closed. Gang
   escalatesTo: {fileID: 11400000, guid: 662bdc3654300d73eb8e3e5188a6634b, type: 2}
   escalationChance: 0.5
+  raidEconomyChange: 1
+  raidTrustChange: 1
+  raidCoolChange: 1
+  ignoreEconomyChange: -1
+  ignoreTrustChange: -1
+  ignoreCoolChange: -1
