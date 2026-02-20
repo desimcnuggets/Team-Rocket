@@ -6,7 +6,6 @@ public class BoroughSetup : MonoBehaviour
     [SerializeField] private GameObject westminsterModel;
     [SerializeField] private GameObject kensingtonModel;
     [SerializeField] private GameObject camdenModel;
-    [SerializeField] private GameObject greenwichModel;
     [SerializeField] private GameObject lambethModel;
     [SerializeField] private GameObject hillingdonModel;
     
@@ -42,12 +41,6 @@ public class BoroughSetup : MonoBehaviour
         {
             Borough camden = BoroughManager.Instance.GetBorough(BoroughType.Camden);
             if (camden != null) camden.boroughModel = camdenModel;
-        }
-        
-        if (greenwichModel != null)
-        {
-            Borough greenwich = BoroughManager.Instance.GetBorough(BoroughType.Greenwich);
-            if (greenwich != null) greenwich.boroughModel = greenwichModel;
         }
         
         if (lambethModel != null)

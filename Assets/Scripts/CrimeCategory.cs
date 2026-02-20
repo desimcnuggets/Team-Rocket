@@ -13,7 +13,10 @@ public enum CrimeCategory
     Environmental,
     PoliticalInterference,
     CivilUnrest,
-    HeritageCrime
+    Heritage,
+    Tourism,
+    Community
+
 
 
 }
