@@ -210,7 +210,7 @@ public class UIManager : MonoBehaviour
                 OnIgnoreClicked();
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Q) && (PauseMenuController.Instance == null || !PauseMenuController.Instance.IsPaused))
+        else if (Input.GetKeyDown(KeyCode.Space) && (PauseMenuController.Instance == null || !PauseMenuController.Instance.IsPaused))
         {
             if (CrimeManager.Instance != null)
             {
