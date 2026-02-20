@@ -6,7 +6,9 @@ public class GameManager : MonoBehaviour
     
     public int currentDay = 1;
     private const float DAY_DURATION = 60f;
+    public const int MAX_DAYS = 10;
     private float dayStartTime;
+    private float gameStartTime;
     
     void Awake()
     {
@@ -27,6 +29,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         dayStartTime = Time.time;
+        gameStartTime = Time.time;
         if (UIManager.Instance != null)
         {
             UIManager.Instance.UpdateDayCounter(currentDay);
@@ -44,6 +47,8 @@ public class GameManager : MonoBehaviour
             dayNightCycle.SetTime(0f);
         }
     }
+
+    public float GetTimeSurvived() => Time.time - gameStartTime;
     
     void Update()
     {
@@ -72,6 +77,14 @@ public class GameManager : MonoBehaviour
     {
         currentDay++;
         dayStartTime = Time.time;
+
+        // Day 10 complete — trigger survived ending
+        if (currentDay > MAX_DAYS)
+        {
+            if (CrimeManager.Instance != null) CrimeManager.Instance.SetGameOver();
+            if (UIManager.Instance != null) UIManager.Instance.ShowWinScreen();
+            return;
+        }
         
         if (UIManager.Instance != null)
         {
@@ -93,6 +106,7 @@ public class GameManager : MonoBehaviour
     {
         currentDay = 1;
         dayStartTime = Time.time;
+        gameStartTime = Time.time;
     }
     
     public void EndGame()

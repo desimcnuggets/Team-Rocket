@@ -12,6 +12,8 @@ public class CrimeManager : MonoBehaviour
     
     private float nextSpawnTime;
     private float nextDriftTime;
+    private float anarchyTimer = 0f;
+    private bool gameOver = false;
     private List<GameObject> activeEvents = new List<GameObject>();
     private List<EscalationEntry> escalationQueue = new List<EscalationEntry>();
     
@@ -30,6 +32,8 @@ public class CrimeManager : MonoBehaviour
     
     void Update()
     {
+        if (gameOver) return;
+
         if (Time.time >= nextDriftTime)
         {
             crimeRate += naturalDrift;
@@ -41,6 +45,22 @@ public class CrimeManager : MonoBehaviour
                 UIManager.Instance.UpdateCrimeBar(crimeRate);
             }
         }
+
+        // Sustained anarchy: crime >= 90% for 30 continuous seconds
+        if (crimeRate >= 90f)
+        {
+            anarchyTimer += Time.deltaTime;
+            if (anarchyTimer >= 30f)
+            {
+                gameOver = true;
+                if (UIManager.Instance != null)
+                    UIManager.Instance.ShowLossScreen("anarchy");
+            }
+        }
+        else
+        {
+            anarchyTimer = 0f;
+        }
         
         if (Time.time >= nextSpawnTime)
         {
@@ -50,6 +70,10 @@ public class CrimeManager : MonoBehaviour
         
         CheckEscalations();
     }
+
+    public float GetCrimeRate() => crimeRate;
+
+    public void SetGameOver() => gameOver = true;
     
     void SpawnRandomEvent()
     {

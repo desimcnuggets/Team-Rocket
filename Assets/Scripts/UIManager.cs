@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -27,6 +28,17 @@ public class UIManager : MonoBehaviour
     [Header("Loss Screen")]
     [SerializeField] private GameObject lossScreenPanel;
     [SerializeField] private TextMeshProUGUI lossReasonText;
+    [SerializeField] private TextMeshProUGUI finalCrimeRateText;
+    [SerializeField] private TextMeshProUGUI budgetLeftText;
+    [SerializeField] private TextMeshProUGUI timeSurvivedText;
+    [SerializeField] private TextMeshProUGUI daysGoneText;
+
+    [Header("Win Screen")]
+    [SerializeField] private GameObject winScreenPanel;
+    [SerializeField] private TextMeshProUGUI winReviewText;
+    [SerializeField] private TextMeshProUGUI winGradeText;
+    [SerializeField] private TextMeshProUGUI winFinalCrimeRateText;
+    [SerializeField] private TextMeshProUGUI winBudgetLeftText;
 
     [Header("Police Units")]
     [SerializeField] private Image[] policeUnitIcons;
@@ -237,10 +249,7 @@ public class UIManager : MonoBehaviour
         {
             ShowLossScreen("crime_zero");
         }
-        else if (crimeRate >= 100f)
-        {
-            ShowLossScreen("crime_max");
-        }
+        // Note: anarchy (>= 90% for 30s) is handled by CrimeManager
     }
     
     public void UpdateBudget(float budget)
@@ -296,29 +305,86 @@ public class UIManager : MonoBehaviour
     public void ShowLossScreen(string reason)
     {
         if (AudioManager.Instance != null) AudioManager.Instance.PlayGameOver();
-        
-        if (lossScreenPanel != null)
+
+        // Gather stats
+        float crimeRate = CrimeManager.Instance != null ? CrimeManager.Instance.GetCrimeRate() : 0f;
+        float budget    = EconomyManager.Instance != null ? EconomyManager.Instance.GetBudget() : 0f;
+        float time      = GameManager.Instance != null ? GameManager.Instance.GetTimeSurvived() : 0f;
+        int   days      = GameManager.Instance != null ? GameManager.Instance.currentDay : 1;
+
+        // Populate stat display
+        if (finalCrimeRateText != null)
+            finalCrimeRateText.text = $"{crimeRate:F0}%";
+        if (budgetLeftText != null)
+            budgetLeftText.text = $"\u00a3{budget:F0}";
+        if (timeSurvivedText != null)
         {
-            lossScreenPanel.SetActive(true);
+            int m = Mathf.FloorToInt(time / 60f);
+            int s = Mathf.FloorToInt(time % 60f);
+            timeSurvivedText.text = $"{m}m {s:D2}s";
         }
-        
+        if (daysGoneText != null)
+            daysGoneText.text = $"Day {Mathf.Min(days, GameManager.MAX_DAYS)} / {GameManager.MAX_DAYS}";
+
+        if (lossScreenPanel != null)
+            lossScreenPanel.SetActive(true);
+
         if (lossReasonText != null)
         {
             switch (reason)
             {
-                case "bankruptcy":
-                    lossReasonText.text = "BUDGET DEPLETED - Commissioner Fired";
-                    break;
                 case "crime_zero":
-                    lossReasonText.text = "CRIME ELIMINATED - You're TOO Good (Suspicious)";
+                    lossReasonText.text = "You solved all crime. London collapses without it. Property prices reach \u00a34.7m for a studio in Lambeth. The Met is defunded. You retire to Surrey. Surrey is very quiet.";
                     break;
-                case "crime_max":
-                    lossReasonText.text = "TOTAL ANARCHY - London Has Fallen";
+                case "anarchy":
+                    lossReasonText.text = "Kensington hires private armies. Camden declares cultural independence. Heathrow is run by the luggage gang. Westminster MPs are barricaded in the Palace. The Thames is on fire. This is not a metaphor.";
+                    break;
+                case "bankruptcy":
+                    lossReasonText.text = "Serco purchases Scotland Yard for \u00a31 and outstanding parking fines. Officers paid in Pret vouchers and moral injury. Crime continues. Nobody notices any difference.";
                     break;
                 default:
                     lossReasonText.text = "GAME OVER";
                     break;
             }
         }
+    }
+    public void OnRestartClicked()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void ShowWinScreen()
+    {
+        float crimeRate = CrimeManager.Instance != null ? CrimeManager.Instance.GetCrimeRate() : 0f;
+        float budget    = EconomyManager.Instance != null ? EconomyManager.Instance.GetBudget() : 0f;
+
+        if (winFinalCrimeRateText != null)
+            winFinalCrimeRateText.text = $"{crimeRate:F0}%";
+        if (winBudgetLeftText != null)
+            winBudgetLeftText.text = $"\u00a3{budget:F0}";
+
+        string review, grade;
+        if (crimeRate >= 30f && crimeRate <= 70f)
+        {
+            review = "You maintained equilibrium. Crime was kept sufficient to justify the department and insufficient to justify an inquiry into it. The Home Office is neither pleased nor displeased. This is the highest outcome.";
+            grade  = "A+";
+        }
+        else if (crimeRate > 70f)
+        {
+            review = "You survived. London is marginally worse than you found it. You did not trigger Anarchy. In the current climate, this constitutes a passing grade.";
+            grade  = "B+";
+        }
+        else
+        {
+            review = "Your discomfort with strategic non-intervention nearly cost the department its funding. Two boroughs sent thank-you cards. That is a significant red flag.";
+            grade  = "C";
+        }
+
+        if (winReviewText != null) winReviewText.text = review;
+        if (winGradeText  != null) winGradeText.text  = grade;
+
+        if (winScreenPanel != null)
+            winScreenPanel.SetActive(true);
     }
 }
