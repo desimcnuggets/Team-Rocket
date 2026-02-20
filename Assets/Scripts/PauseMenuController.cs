@@ -14,6 +14,7 @@ public class PauseMenuController : MonoBehaviour
 
     [Header("Accessibility")]
     [SerializeField] private Toggle dyslexicToggle;
+    [SerializeField] private Toggle staticTickerToggle;
 
     private bool isPaused = false;
 
@@ -49,6 +50,15 @@ public class PauseMenuController : MonoBehaviour
                               AccessibilityManager.Instance.IsDyslexicModeOn;
             dyslexicToggle.SetIsOnWithoutNotify(isDyslexic);
             dyslexicToggle.onValueChanged.AddListener(OnDyslexicToggled);
+        }
+
+        // Initialise static ticker toggle
+        if (staticTickerToggle != null)
+        {
+            bool isStatic = AccessibilityManager.Instance != null &&
+                            AccessibilityManager.Instance.IsStaticTickerModeOn;
+            staticTickerToggle.SetIsOnWithoutNotify(isStatic);
+            staticTickerToggle.onValueChanged.AddListener(OnStaticTickerToggled);
         }
     }
 
@@ -88,5 +98,11 @@ public class PauseMenuController : MonoBehaviour
     {
         if (AccessibilityManager.Instance != null)
             AccessibilityManager.Instance.SetDyslexicMode(value);
+    }
+
+    public void OnStaticTickerToggled(bool value)
+    {
+        if (AccessibilityManager.Instance != null)
+            AccessibilityManager.Instance.SetStaticTickerMode(value);
     }
 }

@@ -7,6 +7,7 @@ public class NewsTicker : MonoBehaviour
     [Header("Scroll Settings")]
     [SerializeField] private bool useCanvasWidth = true;
     [SerializeField] private float scrollSpeed = 100f;
+    [SerializeField] private float staticDisplayDuration = 8f;
 
     [Header("Ambient Messages")]
     [SerializeField] private List<string> ambientMessages = new List<string> {
@@ -23,6 +24,8 @@ public class NewsTicker : MonoBehaviour
     private bool isScrolling = false;
     private float resetPositionX;
     private float offscreenLeftX;
+    private float staticTimer;
+    private bool isStaticWaiting = false;
     private Canvas rootCanvas;
 
     void Awake()
@@ -55,7 +58,35 @@ public class NewsTicker : MonoBehaviour
 
     void Update()
     {
-        if (isScrolling)
+        bool useStatic = AccessibilityManager.Instance != null && AccessibilityManager.Instance.IsStaticTickerModeOn;
+
+        // If setting changes mid-message, adapt immediately
+        if (isScrolling && useStatic)
+        {
+            Debug.Log("[NewsTicker] Switching to Static mode mid-scroll.");
+            isScrolling = false;
+            isStaticWaiting = true;
+            staticTimer = staticDisplayDuration;
+            rectTransform.anchoredPosition = new Vector2(0, rectTransform.anchoredPosition.y);
+        }
+        else if (isStaticWaiting && !useStatic)
+        {
+            Debug.Log("[NewsTicker] Switching to Scrolling mode mid-static.");
+            isStaticWaiting = false;
+            isScrolling = true;
+            rectTransform.anchoredPosition = new Vector2(resetPositionX, rectTransform.anchoredPosition.y);
+        }
+
+        if (isStaticWaiting)
+        {
+            staticTimer -= Time.deltaTime;
+            if (staticTimer <= 0)
+            {
+                isStaticWaiting = false;
+                tickerText.text = "";
+            }
+        }
+        else if (isScrolling)
         {
             rectTransform.anchoredPosition += Vector2.left * scrollSpeed * Time.deltaTime;
 
@@ -125,17 +156,33 @@ public class NewsTicker : MonoBehaviour
 
         if (width <= 0) width = 1920f; // Final safety
 
-        // Calculate positions relative to the center
-        // resetPositionX: Right edge of text starts at Left edge of screen
-        resetPositionX = (width / 2f) + (textWidth / 2f);
-        
-        // offscreenLeftX: Left edge of text passes Right edge of screen
-        // Added 100px padding to ensure it's fully gone before recycling
-        offscreenLeftX = -(width / 2f) - (textWidth / 2f) - 100f;
+        bool useStatic = AccessibilityManager.Instance != null && AccessibilityManager.Instance.IsStaticTickerModeOn;
 
-        rectTransform.anchoredPosition = new Vector2(resetPositionX, rectTransform.anchoredPosition.y);
-        isScrolling = true;
+        if (useStatic)
+        {
+            // Center the text
+            rectTransform.anchoredPosition = new Vector2(0, rectTransform.anchoredPosition.y);
+            isScrolling = false;
+            isStaticWaiting = true;
+            staticTimer = staticDisplayDuration;
+            
+            Debug.Log($"Ticker Started (Static): '{message}' | Duration: {staticDisplayDuration}");
+        }
+        else
+        {
+            // Calculate positions relative to the center
+            // resetPositionX: Right edge of text starts at Left edge of screen
+            resetPositionX = (width / 2f) + (textWidth / 2f);
+            
+            // offscreenLeftX: Left edge of text passes Right edge of screen
+            // Added 100px padding to ensure it's fully gone before recycling
+            offscreenLeftX = -(width / 2f) - (textWidth / 2f) - 100f;
 
-        Debug.Log($"Ticker Started: '{message}' | Width: {width} | TextWidth: {textWidth} | StartX: {resetPositionX}");
+            rectTransform.anchoredPosition = new Vector2(resetPositionX, rectTransform.anchoredPosition.y);
+            isScrolling = true;
+            isStaticWaiting = false;
+
+            Debug.Log($"Ticker Started (Scrolling): '{message}' | Width: {width} | TextWidth: {textWidth} | StartX: {resetPositionX}");
+        }
     }
 }

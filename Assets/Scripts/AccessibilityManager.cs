@@ -28,6 +28,7 @@ public class AccessibilityManager : MonoBehaviour
 
     // ── Runtime state ─────────────────────────────────────────────────────────
     private bool isDyslexicModeOn = false;
+    private bool isStaticTickerModeOn = false;
 
     // Stores all per-component state we touch so we can restore it exactly.
     private struct TextSnapshot
@@ -43,9 +44,11 @@ public class AccessibilityManager : MonoBehaviour
         new Dictionary<TMP_Text, TextSnapshot>();
 
     private const string PrefKey = "DyslexicMode";
+    private const string TickerPrefKey = "StaticTickerMode";
 
     // ── Public read-only accessor ─────────────────────────────────────────────
     public bool IsDyslexicModeOn => isDyslexicModeOn;
+    public bool IsStaticTickerModeOn => isStaticTickerModeOn;
 
     // ── Lifecycle ─────────────────────────────────────────────────────────────
     void Awake()
@@ -68,6 +71,8 @@ public class AccessibilityManager : MonoBehaviour
             // Apply after a frame so all Start() calls in the scene have run
             isDyslexicModeOn = true;
         }
+
+        isStaticTickerModeOn = PlayerPrefs.GetInt(TickerPrefKey, 0) == 1;
     }
 
     void Start()
@@ -112,6 +117,20 @@ public class AccessibilityManager : MonoBehaviour
             ApplyDyslexicFont();
         else
             RestoreOriginalFonts();
+    }
+
+    /// <summary>
+    /// Enable or disable static news ticker mode.
+    /// Connected to the pause menu Toggle's onValueChanged event.
+    /// </summary>
+    public void SetStaticTickerMode(bool enabled)
+    {
+        Debug.Log($"[AccessibilityManager] Setting Static Ticker Mode: {enabled}");
+        if (isStaticTickerModeOn == enabled) return;
+
+        isStaticTickerModeOn = enabled;
+        PlayerPrefs.SetInt(TickerPrefKey, enabled ? 1 : 0);
+        PlayerPrefs.Save();
     }
 
     /// <summary>
