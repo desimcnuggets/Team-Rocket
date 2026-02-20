@@ -15,4 +15,21 @@ public class CrimeEvent : ScriptableObject
     public string tickerRaid;
     public CrimeEvent escalatesTo;
     public float escalationChance;
+
+    [Header("Secondary Stats (Raid)")]
+    public int raidEconomyChange;
+    public int raidTrustChange;
+    public int raidCoolChange;
+
+    [Header("Secondary Stats (Ignore)")]
+    public int ignoreEconomyChange;
+    public int ignoreTrustChange;
+    public int ignoreCoolChange;
+}
+
+public enum StatTier
+{
+    Low, // < 25
+    Med, // 25 - 74
+    High // 75 - 100
 }

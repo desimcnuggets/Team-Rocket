@@ -40,7 +40,8 @@ public class BoroughManager : MonoBehaviour
             displayName = "Greenwich",
             isUnlocked = true,
             unlockDay = 1,
-            mood = 70f,
+            mood = 55f,               // UPDATED: 55 High
+            baseWeight = 0.9f,        // UPDATED: 0.9x Initial
             cameraAngle = 0f
         });
         
@@ -51,7 +52,8 @@ public class BoroughManager : MonoBehaviour
             displayName = "Westminster",
             isUnlocked = false,
             unlockDay = 3,
-            mood = 65f,
+            mood = 70f,               // UPDATED: 70 High
+            baseWeight = 0.6f,        // UPDATED: 0.6x Initial
             cameraAngle = 40f
         });
         
@@ -62,7 +64,8 @@ public class BoroughManager : MonoBehaviour
             displayName = "Lambeth",
             isUnlocked = false,
             unlockDay = 5,
-            mood = 50f,
+            mood = 40f,               // UPDATED: 40 Low
+            baseWeight = 1.2f,        // UPDATED: 1.2x Initial
             cameraAngle = -40f
         });
         
@@ -73,7 +76,8 @@ public class BoroughManager : MonoBehaviour
             displayName = "Hillingdon",
             isUnlocked = false,
             unlockDay = 7,
-            mood = 45f,
+            mood = 60f,               // UPDATED: 60 Med
+            baseWeight = 0.8f,        // UPDATED: 0.8x Initial
             cameraAngle = 80f
         });
         
@@ -84,7 +88,8 @@ public class BoroughManager : MonoBehaviour
             displayName = "Kensington",
             isUnlocked = false,
             unlockDay = 7,
-            mood = 40f,
+            mood = 65f,               // UPDATED: 65 High
+            baseWeight = 0.7f,        // UPDATED: 0.7x Initial
             cameraAngle = -80f
         });
         
@@ -95,7 +100,8 @@ public class BoroughManager : MonoBehaviour
             displayName = "Camden",
             isUnlocked = false,
             unlockDay = 9,
-            mood = 60f,
+            mood = 50f,               // UPDATED: 50 Med
+            baseWeight = 1.0f,        // UPDATED: 1.0x Initial
             cameraAngle = 130f
         });
     }
@@ -137,6 +143,47 @@ public class BoroughManager : MonoBehaviour
             if (!b.isUnlocked && day >= b.unlockDay)
             {
                 UnlockBorough(b);
+            }
+        }
+    }
+    
+    void Update()
+    {
+        // Don't process time if Time.timeScale is 0 (game paused/ended)
+        if (Time.timeScale == 0) return;
+        
+        foreach (Borough b in boroughs)
+        {
+            if (!b.isUnlocked) continue;
+            
+            // Virtuous Cycle
+            if (b.mood >= 75f)
+            {
+                b.timeAbove75 += Time.deltaTime;
+                if (b.timeAbove75 >= 30f)
+                {
+                    IncreaseMood(b.type, 2f);
+                    b.timeAbove75 = 0f;
+                }
+            }
+            else
+            {
+                b.timeAbove75 = 0f;
+            }
+            
+            // Vicious Cycle
+            if (b.mood <= 25f)
+            {
+                b.timeBelow25 += Time.deltaTime;
+                if (b.timeBelow25 >= 30f)
+                {
+                    DecreaseMood(b.type, 2f);
+                    b.timeBelow25 = 0f;
+                }
+            }
+            else
+            {
+                b.timeBelow25 = 0f;
             }
         }
     }
@@ -197,7 +244,8 @@ public class BoroughManager : MonoBehaviour
         if (b != null)
         {
             b.mood += amount;
-            b.mood = Mathf.Clamp(b.mood, 0f, 100f);
+            float maxMood = 100f - b.permanentMoodDamage;
+            b.mood = Mathf.Clamp(b.mood, 0f, maxMood);
         }
     }
     
@@ -207,7 +255,8 @@ public class BoroughManager : MonoBehaviour
         if (b != null)
         {
             b.mood -= amount;
-            b.mood = Mathf.Clamp(b.mood, 0f, 100f);
+            float maxMood = 100f - b.permanentMoodDamage;
+            b.mood = Mathf.Clamp(b.mood, 0f, maxMood);
         }
     }
     
@@ -220,5 +269,52 @@ public class BoroughManager : MonoBehaviour
         float z = Mathf.Cos(angleRad) * radius;
         borough.boroughModel.transform.position = new Vector3(x, 0, z);
         borough.boroughModel.transform.LookAt(Vector3.zero);
+    }
+    
+    public void ProcessRaidMechanics(CrimeEvent evt)
+    {
+        IncreaseMood(evt.borough, 1f); // Baseline Raid Increase
+    }
+    
+    public void ProcessIgnoreMechanics(CrimeEvent evt)
+    {
+        DecreaseMood(evt.borough, 1f); // UPDATED Baseline Ignore Decrease
+        
+        Borough b = GetBorough(evt.borough);
+        if (b == null) return;
+        
+        // Hillingdon (+multiplier)
+        if (evt.borough == BoroughType.Hillingdon && evt.category == CrimeCategory.Environmental)
+        {
+            b.extraSpawnMultiplier += 0.1f;
+        }
+        
+        // Kensington (+drift)
+        if (evt.borough == BoroughType.Kensington && evt.category == CrimeCategory.Surveillance)
+        {
+            if (CrimeManager.Instance != null)
+            {
+                CrimeManager.Instance.naturalDrift += 0.2f;
+            }
+        }
+        
+        // Greenwich (-Mood Ceiling)
+        if (evt.borough == BoroughType.Greenwich && evt.category == CrimeCategory.Heritage)
+        {
+            b.permanentMoodDamage += 3f;
+            // Force a clamp update
+            IncreaseMood(evt.borough, 0f); 
+        }
+        
+        // Westminster (-Trust Ceiling)
+        if (evt.borough == BoroughType.Westminster && evt.category == CrimeCategory.PoliticalInterference)
+        {
+            if (SecondaryStatsManager.Instance != null)
+            {
+                SecondaryStatsManager.Instance.publicTrustCeiling -= 5;
+                // Force a clamp update
+                SecondaryStatsManager.Instance.ModifyTrust(0); 
+            }
+        }
     }
 }

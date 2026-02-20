@@ -6,7 +6,7 @@ public class CrimeManager : MonoBehaviour
     public static CrimeManager Instance;
     
     [SerializeField] private float crimeRate = 65f;
-    [SerializeField] private float naturalDrift = 0.5f;
+    public float naturalDrift = 0.5f;
     [SerializeField] private float spawnInterval = 4f;
     [SerializeField] private GameObject crimeIconPrefab;
     
@@ -58,7 +58,48 @@ public class CrimeManager : MonoBehaviour
         List<Borough> unlocked = BoroughManager.Instance.GetUnlockedBoroughs();
         if (unlocked.Count == 0) return;
         
-        Borough targetBorough = unlocked[Random.Range(0, unlocked.Count)];
+        Borough targetBorough = null;
+        float totalWeight = 0f;
+        
+        // Calculate weights for all unlocked boroughs
+        foreach (Borough b in unlocked)
+        {
+            float moodMultiplier = 2.0f - (b.mood / 50f);
+            float weight = (b.baseWeight * moodMultiplier) + b.extraSpawnMultiplier;
+            totalWeight += weight;
+        }
+        
+        // Select random based on weight
+        float randomValue = Random.Range(0f, totalWeight);
+        float currentWeight = 0f;
+        
+        foreach (Borough b in unlocked)
+        {
+            float moodMultiplier = 2.0f - (b.mood / 50f);
+            float weight = (b.baseWeight * moodMultiplier) + b.extraSpawnMultiplier;
+            currentWeight += weight;
+            
+            if (randomValue <= currentWeight)
+            {
+                targetBorough = b;
+                break;
+            }
+        }
+        
+        if (targetBorough == null)
+        {
+            targetBorough = unlocked[0]; // Fallback
+        }
+        
+        // Penalty: Low Cool Factor makes Camden events spawn much more frequently
+        if (SecondaryStatsManager.Instance != null && SecondaryStatsManager.Instance.GetCoolTier() == StatTier.Low)
+        {
+            Borough camden = unlocked.Find(b => b.type == BoroughType.Camden);
+            if (camden != null && Random.value < 0.5f) // 50% chance to override with Camden
+            {
+                targetBorough = camden;
+            }
+        }
         CrimeEvent evt = EventDatabase.Instance.GetRandomEvent(targetBorough.type);
         
         if (evt == null || targetBorough.boroughModel == null) return;
@@ -163,12 +204,26 @@ public class CrimeManager : MonoBehaviour
             
             if (Time.time - entry.ignoreTimestamp >= 20f)
             {
-                if (Random.value <= entry.originalEvent.escalationChance)
+                float currentEscalationChance = entry.originalEvent.escalationChance;
+                
+                // Penalty: Low Economy makes events escalate 20% more likely
+                if (SecondaryStatsManager.Instance != null && SecondaryStatsManager.Instance.GetEconomyTier() == StatTier.Low)
+                {
+                    currentEscalationChance *= 1.2f;
+                }
+                
+                if (Random.value <= currentEscalationChance)
                 {
                     if (entry.originalEvent.escalatesTo != null)
                     {
                         if (AudioManager.Instance != null) AudioManager.Instance.PlayEscalationTrigger();
                         ForceSpawnEvent(entry.originalEvent.escalatesTo, entry.borough);
+                        
+                        // Escalation Damage
+                        if (BoroughManager.Instance != null)
+                        {
+                            BoroughManager.Instance.DecreaseMood(entry.borough, 3f);
+                        }
                         
                         if (UIManager.Instance != null)
                         {

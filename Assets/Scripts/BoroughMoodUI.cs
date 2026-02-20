@@ -28,13 +28,14 @@ public class BoroughMoodUI : MonoBehaviour
     
     Color GetMoodColor(float mood)
     {
-        if (mood >= 70f)
-            return new Color(0.3f, 1f, 0.3f, 1f);
-        else if (mood >= 50f)
-            return new Color(1f, 1f, 0.3f, 1f);
-        else if (mood >= 30f)
-            return new Color(1f, 0.7f, 0.3f, 1f);
+        Color color = Color.white;
+        if (mood >= 66f)
+            ColorUtility.TryParseHtmlString("#2FDE67", out color);
+        else if (mood >= 33f)
+            ColorUtility.TryParseHtmlString("#FA9A0A", out color);
         else
-            return new Color(1f, 0.3f, 0.3f, 1f);
+            ColorUtility.TryParseHtmlString("#ED1A24", out color);
+            
+        return color;
     }
 }

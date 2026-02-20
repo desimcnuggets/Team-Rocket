@@ -54,7 +54,6 @@ public class AudioManager : MonoBehaviour
             Debug.Log("AudioManager: musicSource was not assigned. Adding a default AudioSource.");
         }
 
-        // IMPORTANT: Let audio play even if Time.timeScale is 0 (like during Game Over)
         sfxSource.ignoreListenerPause = true;
         musicSource.ignoreListenerPause = true;
     }
