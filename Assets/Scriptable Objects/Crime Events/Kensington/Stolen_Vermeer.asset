@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45e04df28669e74a95e6f12713bd0bd, type: 3}
+  m_Name: Stolen_Vermeer
+  m_EditorClassIdentifier: 
+  eventName: Stolen Vermeer
+  borough: 1
+  category: 1
+  crimeRateChange: 3
+  bribeValue: 3500
+  victimDescription: "\xA318m Vermeer missing from private members club. Poor lighting.
+    Three-week head start."
+  victimPortrait: {fileID: 1869990944, guid: d21c2dabe4def3a4b825a4ad8c056818, type: 3}
+  mapIcon: {fileID: -708588293, guid: a04fb3298361357438d65fb877b6765d, type: 3}
+  tickerIgnore: Missing Vermeer added to insurance claim from 1987. That claim is
+    also still outstanding.
+  tickerRaid: Stolen Vermeer recovered from Peckham storage unit. Club declines comment.
+    Installs slightly better lighting.
+  escalatesTo: {fileID: 11400000, guid: 9e31c845e5799ad4da50d6756d3ee439, type: 2}
+  escalationChance: 0.5

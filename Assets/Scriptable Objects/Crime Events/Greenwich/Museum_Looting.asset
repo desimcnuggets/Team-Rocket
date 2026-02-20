@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45e04df28669e74a95e6f12713bd0bd, type: 3}
+  m_Name: Museum_Looting
+  m_EditorClassIdentifier: 
+  eventName: Museum Looting
+  borough: 3
+  category: 1
+  crimeRateChange: 4
+  bribeValue: 2000
+  victimDescription: Thief systematically looting National Maritime Museum. 47 items
+    missing.
+  victimPortrait: {fileID: 1214533716, guid: d21c2dabe4def3a4b825a4ad8c056818, type: 3}
+  mapIcon: {fileID: -242234067, guid: 816d79afa4e708946a20252de3119af0, type: 3}
+  tickerIgnore: 47 items missing from National Maritime Museum. Curators assumed
+    it was an audit discrepancy. It is not.
+  tickerRaid: Museum looting operation stopped. 47 items recovered. Thief's storage
+    unit described as 'better than the museum'.
+  escalatesTo: {fileID: 0}
+  escalationChance: 0

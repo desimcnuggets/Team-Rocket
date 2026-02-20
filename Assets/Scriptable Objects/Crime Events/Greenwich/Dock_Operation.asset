@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45e04df28669e74a95e6f12713bd0bd, type: 3}
+  m_Name: Dock_Operation
+  m_EditorClassIdentifier: 
+  eventName: Dock Operation
+  borough: 3
+  category: 1
+  crimeRateChange: 6
+  bribeValue: 8000
+  victimDescription: Gang operating from commercial dock with two Port Authority
+    staff on payroll. Volume tripled.
+  victimPortrait: {fileID: 1356315865, guid: 1b3a03cc11c35814082158219a4fb7a3, type: 3}
+  mapIcon: {fileID: 1214533716, guid: d21c2dabe4def3a4b825a4ad8c056818, type: 3}
+  tickerIgnore: Thames gang operates from commercial dock. Two Port Authority staff
+    on payroll. Volume has tripled.
+  tickerRaid: Permanent dock operation dismantled. Two Port Authority staff arrested.
+    Three more under investigation.
+  escalatesTo: {fileID: 11400000, guid: 768f926eae3a0ba40b21ce84cbe57e14, type: 2}
+  escalationChance: 0

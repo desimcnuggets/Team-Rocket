@@ -48,8 +48,8 @@ public class BoroughManager : MonoBehaviour
         // 2. Westminster
         boroughs.Add(new Borough
         {
-            type = BoroughType.Westminster,
-            displayName = "Westminster",
+            type = BoroughType.Kensington,
+            displayName = "Kensington",
             isUnlocked = false,
             unlockDay = 3,
             mood = 70f,               // UPDATED: 70 High
@@ -72,8 +72,8 @@ public class BoroughManager : MonoBehaviour
         // 4. Hillingdon
         boroughs.Add(new Borough
         {
-            type = BoroughType.Hillingdon,
-            displayName = "Hillingdon",
+            type = BoroughType.Greenwich,
+            displayName = "Greenwich",
             isUnlocked = false,
             unlockDay = 7,
             mood = 60f,               // UPDATED: 60 Med
@@ -84,8 +84,8 @@ public class BoroughManager : MonoBehaviour
         // 5. Kensington
         boroughs.Add(new Borough
         {
-            type = BoroughType.Kensington,
-            displayName = "Kensington",
+            type = BoroughType.Lambeth,
+            displayName = "Lambeth",
             isUnlocked = false,
             unlockDay = 7,
             mood = 65f,               // UPDATED: 65 High
@@ -96,8 +96,8 @@ public class BoroughManager : MonoBehaviour
         // 6. Camden
         boroughs.Add(new Borough
         {
-            type = BoroughType.Camden,
-            displayName = "Camden",
+            type = BoroughType.Hillingdon,
+            displayName = "Hillingdon",
             isUnlocked = false,
             unlockDay = 9,
             mood = 50f,               // UPDATED: 50 Med
@@ -223,16 +223,16 @@ public class BoroughManager : MonoBehaviour
     {
         switch (type)
         {
-            case BoroughType.Westminster:
-                return "BREAKING: Crime spreads to Westminster — Politicians nervously check exits";
-            case BoroughType.Lambeth:
-                return "Lambeth unlocked — Local businesses brace for impact";
-            case BoroughType.Hillingdon:
-                return "Hillingdon now active — Suburban tranquility disrupted";
             case BoroughType.Kensington:
-                return "Kensington enters the fray — Property values threatened";
+                return "BREAKING: Crime spreads to The City — Bankers nervously check exits";
             case BoroughType.Camden:
-                return "Camden unlocked — Alternative scene meets alternative crime";
+                return "Camden unlocked — Roadmen rejoice, artisanal coffee shops brace";
+            case BoroughType.Greenwich:
+                return "East End now active — Local geezers unimpressed";
+            case BoroughType.Lambeth:
+                return "Brixton enters the fray — Community leaders demand action";
+            case BoroughType.Hillingdon:
+                return "Kingston unlocked — Suburban chaos ensues";
             default:
                 return "New area unlocked";
         }

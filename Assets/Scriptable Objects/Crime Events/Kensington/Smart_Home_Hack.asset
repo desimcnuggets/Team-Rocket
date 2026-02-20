@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45e04df28669e74a95e6f12713bd0bd, type: 3}
+  m_Name: Smart_Home_Hack
+  m_EditorClassIdentifier: 
+  eventName: Smart Home Hack
+  borough: 1
+  category: 9
+  crimeRateChange: 0
+  bribeValue: 8000
+  victimDescription: "Hedge fund buying hacked smart home data to short residents'
+    businesses when they travel. Made \xA38m."
+  victimPortrait: {fileID: 1936467543, guid: d21c2dabe4def3a4b825a4ad8c056818, type: 3}
+  mapIcon: {fileID: 418894746, guid: a04fb3298361357438d65fb877b6765d, type: 3}
+  tickerIgnore: Kensington hedge fund posts record quarter. Investment strategy described
+    as 'proprietary data-driven'. It is stolen data.
+  tickerRaid: Smart home data trading scheme exposed. Fund frozen. FCA investigates.
+    Residents change thermostat passwords.
+  escalatesTo: {fileID: 0}
+  escalationChance: 0

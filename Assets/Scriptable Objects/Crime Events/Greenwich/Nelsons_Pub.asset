@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45e04df28669e74a95e6f12713bd0bd, type: 3}
+  m_Name: Nelsons_Pub
+  m_EditorClassIdentifier: 
+  eventName: Nelsons Pub
+  borough: 3
+  category: 8
+  crimeRateChange: 2
+  bribeValue: 3500
+  victimDescription: Nelson-linked pub converted to luxury flats without listed building
+    consent
+  victimPortrait: {fileID: -1242293474, guid: d21c2dabe4def3a4b825a4ad8c056818, type: 3}
+  mapIcon: {fileID: 839916339, guid: a04fb3298361357438d65fb877b6765d, type: 3}
+  tickerIgnore: Nelson pub conversion continues. Developer describes original bar
+    as 'not period-appropriate'. It was from 1790.
+  tickerRaid: Listed building conversion halted. Original bar gone. Fireplace gone.
+    Juliet balcony remains. Irony noted by all.
+  escalatesTo: {fileID: 11400000, guid: f4dcf014069b4ef4e8832a3aa683cd90, type: 2}
+  escalationChance: 0

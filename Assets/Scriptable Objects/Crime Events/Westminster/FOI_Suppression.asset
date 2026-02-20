@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45e04df28669e74a95e6f12713bd0bd, type: 3}
+  m_Name: FOI_Suppression
+  m_EditorClassIdentifier: 
+  eventName: FOI Suppression
+  borough: 0
+  category: 6
+  crimeRateChange: 3
+  bribeValue: 5000
+  victimDescription: Senior civil servant deleting 340 FOI requests before logging,
+    on ministerial instruction
+  victimPortrait: {fileID: 1214533716, guid: d21c2dabe4def3a4b825a4ad8c056818, type: 3}
+  mapIcon: {fileID: -1134977837, guid: a04fb3298361357438d65fb877b6765d, type: 3}
+  tickerIgnore: FOI response rate in Westminster department falls to 3%. Department
+    attributes it to 'resourcing pressures'.
+  tickerRaid: FOI suppression exposed. Civil servant dismissed. Minister gives statement.
+    Statement contains no information.
+  escalatesTo: {fileID: 11400000, guid: 102a9f99c029b7eec099501b0e8cddfb, type: 2}
+  escalationChance: 0.5

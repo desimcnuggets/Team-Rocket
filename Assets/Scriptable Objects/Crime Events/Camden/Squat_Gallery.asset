@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45e04df28669e74a95e6f12713bd0bd, type: 3}
+  m_Name: Squat_Gallery
+  m_EditorClassIdentifier: 
+  eventName: Squat Gallery
+  borough: 2
+  category: 1
+  crimeRateChange: 3
+  bribeValue: 900
+  victimDescription: Squatters occupy vacant Barclays branch and open free gallery.
+    Arts Council funding received.
+  victimPortrait: {fileID: -1242293474, guid: d21c2dabe4def3a4b825a4ad8c056818, type: 3}
+  mapIcon: {fileID: 231938385, guid: 816d79afa4e708946a20252de3119af0, type: 3}
+  tickerIgnore: Squatter gallery receives Arts Council funding. Barclays releases
+    statement supporting community spaces.
+  tickerRaid: "Squatter gallery closed. Artwork seized as evidence. HMRC confirms
+    landlord owes \xA34.2m in back tax."
+  escalatesTo: {fileID: 11400000, guid: fed530b10ee8a58015afdaa59fcf8048, type: 2}
+  escalationChance: 0.5

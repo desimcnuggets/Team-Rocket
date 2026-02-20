@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45e04df28669e74a95e6f12713bd0bd, type: 3}
+  m_Name: Tee_Fraud
+  m_EditorClassIdentifier: 
+  eventName: Tee Fraud
+  borough: 2
+  category: 0
+  crimeRateChange: 1
+  bribeValue: 400
+  victimDescription: Counterfeit vintage band tees sold at Camden Lock stall
+  victimPortrait: {fileID: -1982354599, guid: d21c2dabe4def3a4b825a4ad8c056818, type: 3}
+  mapIcon: {fileID: -1971753752, guid: 1b3a03cc11c35814082158219a4fb7a3, type: 3}
+  tickerIgnore: Counterfeit vintage stall shortlisted for Best Independent Retailer
+    by Time Out London.
+  tickerRaid: Fake vintage stall raided. 200 band tees seized. Nirvana estate unavailable
+    for comment.
+  escalatesTo: {fileID: 11400000, guid: 5ba982e21ba71714a8385f45677683cd, type: 2}
+  escalationChance: 0.5

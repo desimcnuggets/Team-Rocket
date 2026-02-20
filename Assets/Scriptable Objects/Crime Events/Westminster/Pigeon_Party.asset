@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45e04df28669e74a95e6f12713bd0bd, type: 3}
+  m_Name: Pigeon_Party
+  m_EditorClassIdentifier: 
+  eventName: Pigeon Party
+  borough: 0
+  category: 0
+  crimeRateChange: 2
+  bribeValue: 0
+  victimDescription: Pigeon Rights Party registered with Electoral Commission. Polling
+    at 4% nationally.
+  victimPortrait: {fileID: 1014985058, guid: d21c2dabe4def3a4b825a4ad8c056818, type: 3}
+  mapIcon: {fileID: -804642840, guid: 1b3a03cc11c35814082158219a4fb7a3, type: 3}
+  tickerIgnore: Pigeon Rights Party polling at 4% nationally. Electoral Commission
+    confirms registration. Pigeons unavailable.
+  tickerRaid: Pigeon Rights Party headquarters raided. No evidence of crime. Pigeons
+    stage vigil. Nobody covers it.
+  escalatesTo: {fileID: 11400000, guid: 5010e3d3b99b9f44e92c203774c15862, type: 2}
+  escalationChance: 0

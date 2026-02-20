@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45e04df28669e74a95e6f12713bd0bd, type: 3}
+  m_Name: Identity_Report
+  m_EditorClassIdentifier: 
+  eventName: Identity Report
+  borough: 2
+  category: 3
+  crimeRateChange: 3
+  bribeValue: 3000
+  victimDescription: Consultancy selling neighbourhood readiness reports to developers,
+    recommending community defunding
+  victimPortrait: {fileID: 1869990944, guid: d21c2dabe4def3a4b825a4ad8c056818, type: 3}
+  mapIcon: {fileID: -1381400410, guid: 1b3a03cc11c35814082158219a4fb7a3, type: 3}
+  tickerIgnore: Camden neighbourhood readiness report circulates. Three community
+    centres lose funding within a month.
+  tickerRaid: Gentrification consultancy raided. Reports seized. One officer cries
+    reading page 14. Won't say why.
+  escalatesTo: {fileID: 11400000, guid: 4809bcd56d9cc964a8f2805061a5c120, type: 2}
+  escalationChance: 0

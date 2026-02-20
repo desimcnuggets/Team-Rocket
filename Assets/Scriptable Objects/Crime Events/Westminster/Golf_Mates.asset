@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45e04df28669e74a95e6f12713bd0bd, type: 3}
+  m_Name: Golf_Mates
+  m_EditorClassIdentifier: 
+  eventName: Golf Mates
+  borough: 0
+  category: 2
+  crimeRateChange: 4
+  bribeValue: 8000
+  victimDescription: "Lobbying firm selling Cabinet WhatsApp access for \xA345k per
+    month"
+  victimPortrait: {fileID: 50129554, guid: d21c2dabe4def3a4b825a4ad8c056818, type: 3}
+  mapIcon: {fileID: 1786376182, guid: 816d79afa4e708946a20252de3119af0, type: 3}
+  tickerIgnore: Lobbying firm sees 400% increase in clients following rumours of
+    ministerial access. Demand outstrips supply.
+  tickerRaid: Golf Mates WhatsApp group leaked in full. Contains ministerial access,
+    share tips, and one unironic meme.
+  escalatesTo: {fileID: 11400000, guid: 9bfb48f069e3d1b438bf8bbf9770ecfd, type: 2}
+  escalationChance: 0.5

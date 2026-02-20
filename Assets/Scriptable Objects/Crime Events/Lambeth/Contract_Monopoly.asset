@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45e04df28669e74a95e6f12713bd0bd, type: 3}
+  m_Name: Contract_Monopoly
+  m_EditorClassIdentifier: 
+  eventName: Contract Monopoly
+  borough: 4
+  category: 2
+  crimeRateChange: 6
+  bribeValue: 12000
+  victimDescription: "Single firm wins \xA322m in Lambeth contracts over 18 months
+    and completes none of them"
+  victimPortrait: {fileID: -890108890, guid: d21c2dabe4def3a4b825a4ad8c056818, type: 3}
+  mapIcon: {fileID: -1467836615, guid: 1b3a03cc11c35814082158219a4fb7a3, type: 3}
+  tickerIgnore: "Single firm wins \xA322m in Lambeth contracts in 18 months. Has
+    completed none of them. Three sites started."
+  tickerRaid: "Lambeth contract monopoly exposed. Auditors find \xA322m awarded,
+    \xA30 delivered. Council dissolved."
+  escalatesTo: {fileID: 0}
+  escalationChance: 0

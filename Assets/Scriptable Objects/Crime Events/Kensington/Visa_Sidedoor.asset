@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45e04df28669e74a95e6f12713bd0bd, type: 3}
+  m_Name: Visa_Sidedoor
+  m_EditorClassIdentifier: 
+  eventName: Visa Sidedoor
+  borough: 1
+  category: 2
+  crimeRateChange: 3
+  bribeValue: 4500
+  victimDescription: Embassy staff running visa fraud ring from side entrance on
+    Thursday afternoons
+  victimPortrait: {fileID: -270638069, guid: d21c2dabe4def3a4b825a4ad8c056818, type: 3}
+  mapIcon: {fileID: 1437698152, guid: a04fb3298361357438d65fb877b6765d, type: 3}
+  tickerIgnore: Embassy visa side-hustle described by Foreign Office as 'a consular
+    grey area'. It is not a grey area.
+  tickerRaid: Embassy visa ring broken up. Three arrests. Two immediately claim diplomatic
+    immunity. Both granted.
+  escalatesTo: {fileID: 11400000, guid: e341a0892a6dc525bc037fdab84e933d, type: 2}
+  escalationChance: 0.5

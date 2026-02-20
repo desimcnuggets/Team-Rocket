@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45e04df28669e74a95e6f12713bd0bd, type: 3}
+  m_Name: Venue_Leases
+  m_EditorClassIdentifier: 
+  eventName: Venue Leases
+  borough: 2
+  category: 3
+  crimeRateChange: 5
+  bribeValue: 5500
+  victimDescription: Developer acquires three Camden venue leases using intelligence
+    from embedded corporate spy
+  victimPortrait: {fileID: 2077793880, guid: d21c2dabe4def3a4b825a4ad8c056818, type: 3}
+  mapIcon: {fileID: -242234067, guid: 816d79afa4e708946a20252de3119af0, type: 3}
+  tickerIgnore: Three Camden venues close simultaneously. Press release calls it
+    'portfolio consolidation'. It is not.
+  tickerRaid: Venue acquisition halted. Development company sues. Case lasts four
+    years. Venues close anyway.
+  escalatesTo: {fileID: 0}
+  escalationChance: 0

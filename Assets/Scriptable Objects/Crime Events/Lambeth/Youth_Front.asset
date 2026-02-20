@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45e04df28669e74a95e6f12713bd0bd, type: 3}
+  m_Name: Youth_Front
+  m_EditorClassIdentifier: 
+  eventName: Youth Front
+  borough: 4
+  category: 1
+  crimeRateChange: 4
+  bribeValue: 2500
+  victimDescription: County lines network using the only after-school youth centre
+    as a front
+  victimPortrait: {fileID: -1982354599, guid: d21c2dabe4def3a4b825a4ad8c056818, type: 3}
+  mapIcon: {fileID: -363480125, guid: a04fb3298361357438d65fb877b6765d, type: 3}
+  tickerIgnore: Lambeth county lines issue described by local MP as 'a complex safeguarding
+    matter'. He does nothing further.
+  tickerRaid: Youth centre county lines operation busted. Centre closed. Gang
+  escalatesTo: {fileID: 11400000, guid: 662bdc3654300d73eb8e3e5188a6634b, type: 2}
+  escalationChance: 0.5

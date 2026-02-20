@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45e04df28669e74a95e6f12713bd0bd, type: 3}
+  m_Name: Territorial_Gang
+  m_EditorClassIdentifier: 
+  eventName: Territorial Gang
+  borough: 4
+  category: 1
+  crimeRateChange: 7
+  bribeValue: 4500
+  victimDescription: Gang formalised with 40 members, defined south London territories,
+    and protection rackets
+  victimPortrait: {fileID: 1936467543, guid: d21c2dabe4def3a4b825a4ad8c056818, type: 3}
+  mapIcon: {fileID: 1413514495, guid: 816d79afa4e708946a20252de3119af0, type: 3}
+  tickerIgnore: South London gang divides territory, recruits 40 members, expands
+    into courier robbery and protection.
+  tickerRaid: Territorial gang broken up. Power vacuum filled within 72 hours. Different
+    people, same territory.
+  escalatesTo: {fileID: 0}
+  escalationChance: 0

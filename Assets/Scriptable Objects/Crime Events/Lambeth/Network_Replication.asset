@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45e04df28669e74a95e6f12713bd0bd, type: 3}
+  m_Name: Network_Replication
+  m_EditorClassIdentifier: 
+  eventName: Network Replication
+  borough: 4
+  category: 1
+  crimeRateChange: 7
+  bribeValue: 6000
+  victimDescription: County lines template replicated across three more south London
+    youth centres
+  victimPortrait: {fileID: 93019179, guid: d21c2dabe4def3a4b825a4ad8c056818, type: 3}
+  mapIcon: {fileID: -793218144, guid: a04fb3298361357438d65fb877b6765d, type: 3}
+  tickerIgnore: Four youth centre county lines network operational. Youth workers
+    at all sites aware. None have called.
+  tickerRaid: Four-site county lines network busted. All four centres close. No after-school
+    provision in five postcodes.
+  escalatesTo: {fileID: 11400000, guid: ce4dd7a8bf11bdf4dbde039879edb69f, type: 2}
+  escalationChance: 0

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45e04df28669e74a95e6f12713bd0bd, type: 3}
+  m_Name: Terminal_Takeover
+  m_EditorClassIdentifier: 
+  eventName: Terminal Takeover
+  borough: 5
+  category: 1
+  crimeRateChange: 4
+  bribeValue: 2200
+  victimDescription: Fake warden operation across all five Heathrow terminals processing
+    80 fines per day
+  victimPortrait: {fileID: 1214533716, guid: d21c2dabe4def3a4b825a4ad8c056818, type: 3}
+  mapIcon: {fileID: 472597836, guid: 816d79afa4e708946a20252de3119af0, type: 3}
+  tickerIgnore: Fake warden network processes 80 fines a day. Revenue exceeds Hillingdon
+    parking enforcement budget.
+  tickerRaid: Five-terminal fake warden ring dismantled. TfL confirms it had already
+    modelled their operational structure.
+  escalatesTo: {fileID: 11400000, guid: 49d82043153dfd54080204e262e086c0, type: 2}
+  escalationChance: 0

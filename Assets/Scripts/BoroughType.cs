@@ -4,8 +4,9 @@ public enum BoroughType
 {
     Greenwich,
     Westminster,
-    Lambeth,
-    Hillingdon,
     Kensington,
-    Camden
+    Camden,
+    Greenwich,
+    Lambeth,
+    Hillingdon
 }

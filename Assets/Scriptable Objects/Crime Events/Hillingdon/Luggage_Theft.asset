@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45e04df28669e74a95e6f12713bd0bd, type: 3}
+  m_Name: Luggage_Theft
+  m_EditorClassIdentifier: 
+  eventName: Luggage Theft
+  borough: 5
+  category: 1
+  crimeRateChange: 3
+  bribeValue: 2000
+  victimDescription: 400 bags stolen via baggage tag swapping using proper airport
+    uniforms
+  victimPortrait: {fileID: -542153848, guid: d21c2dabe4def3a4b825a4ad8c056818, type: 3}
+  mapIcon: {fileID: 993234895, guid: a04fb3298361357438d65fb877b6765d, type: 3}
+  tickerIgnore: Airport theft so well-organised that TripAdvisor reviews blame the
+    airlines. Airlines accept blame.
+  tickerRaid: Airport luggage ring arrested. 400 bags recovered. All owners have
+    already bought replacements.
+  escalatesTo: {fileID: 11400000, guid: 5562a385ccb416d4281a72b08fda3d0b, type: 2}
+  escalationChance: 0.5
