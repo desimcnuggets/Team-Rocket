@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 4c1df6fa293258147b2c462bb9c6e084
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - sfxSource: {instanceID: 0}
+  - musicSource: {instanceID: 0}
+  - eventSpawnClip: {fileID: 8300000, guid: 206f89586cc29f640bec044ba4c874c4, type: 3}
+  - raidClickClip: {fileID: 8300000, guid: 206f89586cc29f640bec044ba4c874c4, type: 3}
+  - ignoreClickClip: {instanceID: 0}
+  - escalationTriggerClip: {instanceID: 0}
+  - fundingReviewClip: {instanceID: 0}
+  - gameOverClip: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

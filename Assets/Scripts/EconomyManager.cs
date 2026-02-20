@@ -40,6 +40,8 @@ public class EconomyManager : MonoBehaviour
     
     public void TriggerFundingReview()
     {
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayFundingReview();
+        
         if (UIManager.Instance != null)
         {
             UIManager.Instance.UpdateTicker("FUNDING REVIEW: Commissioner asked to justify budget allocation");
