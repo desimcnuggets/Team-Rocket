@@ -12,6 +12,9 @@ public class PauseMenuController : MonoBehaviour
     [SerializeField] private Slider musicSlider;
     [SerializeField] private Slider sfxSlider;
 
+    [Header("Accessibility")]
+    [SerializeField] private Toggle dyslexicToggle;
+
     private bool isPaused = false;
 
     void Awake()
@@ -38,6 +41,15 @@ public class PauseMenuController : MonoBehaviour
         }
 
         if (pausePanel != null) pausePanel.SetActive(false);
+
+        // Initialise dyslexic toggle
+        if (dyslexicToggle != null)
+        {
+            bool isDyslexic = AccessibilityManager.Instance != null &&
+                              AccessibilityManager.Instance.IsDyslexicModeOn;
+            dyslexicToggle.SetIsOnWithoutNotify(isDyslexic);
+            dyslexicToggle.onValueChanged.AddListener(OnDyslexicToggled);
+        }
     }
 
     void Update()
@@ -71,4 +83,10 @@ public class PauseMenuController : MonoBehaviour
     }
 
     public bool IsPaused => isPaused;
+
+    public void OnDyslexicToggled(bool value)
+    {
+        if (AccessibilityManager.Instance != null)
+            AccessibilityManager.Instance.SetDyslexicMode(value);
+    }
 }

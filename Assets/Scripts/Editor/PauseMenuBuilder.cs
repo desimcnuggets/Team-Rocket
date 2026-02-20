@@ -92,7 +92,11 @@ public class PauseMenuBuilder : MonoBehaviour
 
         CreateDivider(card.transform);
 
-        // ---- RESUME BUTTON ----
+        // ---- DYSLEXIC MODE TOGGLE ----
+        Toggle dyslexicToggle = CreateToggleRow(card.transform, "DYSLEXIC MODE", 48);
+
+        CreateDivider(card.transform);
+
         Button resumeBtn = CreateButton(card.transform, "RESUME", new Color(0.2f, 0.72f, 0.45f), 70);
 
         // =============================================
@@ -111,11 +115,16 @@ public class PauseMenuBuilder : MonoBehaviour
         so.FindProperty("pausePanel").objectReferenceValue  = pauseRoot;
         so.FindProperty("musicSlider").objectReferenceValue = musicSlider;
         so.FindProperty("sfxSlider").objectReferenceValue   = sfxSlider;
+        so.FindProperty("dyslexicToggle").objectReferenceValue = dyslexicToggle;
         so.ApplyModifiedProperties();
 
         // Wire Resume button
         UnityEditor.Events.UnityEventTools.AddPersistentListener(
             resumeBtn.onClick, controller.OnResumeClicked);
+
+        // Wire Dyslexic toggle
+        UnityEditor.Events.UnityEventTools.AddBoolPersistentListener(
+            dyslexicToggle.onValueChanged, controller.OnDyslexicToggled, false);
 
         // Disable panel by default (hidden in-game)
         pauseRoot.SetActive(false);
@@ -215,6 +224,73 @@ public class PauseMenuBuilder : MonoBehaviour
         slider.targetGraphic = hImg;
 
         return slider;
+    }
+
+    static Toggle CreateToggleRow(Transform parent, string label, float height)
+    {
+        // Outer row container
+        GameObject row = new GameObject("ToggleRow_" + label.Replace(" ", "_"));
+        row.transform.SetParent(parent, false);
+        LayoutElement rowLE = row.AddComponent<LayoutElement>();
+        rowLE.preferredHeight = height;
+
+        HorizontalLayoutGroup hlg = row.AddComponent<HorizontalLayoutGroup>();
+        hlg.childAlignment = TextAnchor.MiddleLeft;
+        hlg.spacing = 20;
+        hlg.childControlHeight = true;
+        hlg.childControlWidth = false;
+        hlg.childForceExpandHeight = true;
+        hlg.childForceExpandWidth = false;
+
+        // --- Toggle widget ---
+        GameObject toggleGO = new GameObject("Toggle");
+        toggleGO.transform.SetParent(row.transform, false);
+        LayoutElement toggleLE = toggleGO.AddComponent<LayoutElement>();
+        toggleLE.preferredWidth = 48;
+
+        Toggle toggle = toggleGO.AddComponent<Toggle>();
+
+        // Background (the checkbox box)
+        GameObject bg = new GameObject("Background");
+        bg.transform.SetParent(toggleGO.transform, false);
+        RectTransform bgRT = bg.AddComponent<RectTransform>();
+        bgRT.anchorMin = new Vector2(0f, 0.5f);
+        bgRT.anchorMax = new Vector2(0f, 0.5f);
+        bgRT.pivot     = new Vector2(0f, 0.5f);
+        bgRT.sizeDelta = new Vector2(36, 36);
+        bgRT.anchoredPosition = Vector2.zero;
+        Image bgImg = bg.AddComponent<Image>();
+        bgImg.color = new Color(0.15f, 0.2f, 0.28f);
+
+        // Checkmark
+        GameObject checkGO = new GameObject("Checkmark");
+        checkGO.transform.SetParent(bg.transform, false);
+        RectTransform checkRT = checkGO.AddComponent<RectTransform>();
+        checkRT.anchorMin = new Vector2(0.1f, 0.1f);
+        checkRT.anchorMax = new Vector2(0.9f, 0.9f);
+        checkRT.offsetMin = checkRT.offsetMax = Vector2.zero;
+        Image checkImg = checkGO.AddComponent<Image>();
+        checkImg.color = new Color(0.33f, 0.78f, 1f);
+
+        toggle.targetGraphic = bgImg;
+        toggle.graphic       = checkImg;
+        toggle.isOn          = false;
+
+        // --- Label ---
+        GameObject labelGO = new GameObject("Label_" + label.Replace(" ", "_"));
+        labelGO.transform.SetParent(row.transform, false);
+        LayoutElement labelLE = labelGO.AddComponent<LayoutElement>();
+        labelLE.flexibleWidth = 1;
+
+        TextMeshProUGUI tmp = labelGO.AddComponent<TextMeshProUGUI>();
+        tmp.text      = label;
+        tmp.fontSize  = 26;
+        tmp.color     = Color.white;
+        tmp.alignment = TextAlignmentOptions.MidlineLeft;
+        TMP_FontAsset font = Resources.Load<TMP_FontAsset>("Fonts & Materials/LiberationSans SDF");
+        if (font != null) tmp.font = font;
+
+        return toggle;
     }
 
     static Button CreateButton(Transform parent, string label, Color bgColor, float height)
