@@ -83,11 +83,6 @@ public class PoliceManager : MonoBehaviour
         if (currentUnits > 0)
         {
             currentUnits--;
-            // If we were at max, start the timer now
-            if (currentUnits == maxUnits - 1 && regenTimer == 0f)
-            {
-                regenTimer = 0f;
-            }
         }
     }
 }

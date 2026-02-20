@@ -211,18 +211,7 @@ public class UIManager : MonoBehaviour
             {
                 if (policeUnitIcons[i] != null)
                 {
-                    // Tint icons based on availability instead of disabling them
-                    if (i < PoliceManager.Instance.currentUnits)
-                    {
-                        policeUnitIcons[i].color = unitAvailableColor;
-                        policeUnitIcons[i].gameObject.SetActive(true);
-                    }
-                    else
-                    {
-                        policeUnitIcons[i].color = unitUsedColor;
-                        // Only show icons up to the current max capacity
-                        policeUnitIcons[i].gameObject.SetActive(i < PoliceManager.Instance.maxUnits);
-                    }
+                    policeUnitIcons[i].gameObject.SetActive(i < PoliceManager.Instance.currentUnits);
                 }
             }
         }

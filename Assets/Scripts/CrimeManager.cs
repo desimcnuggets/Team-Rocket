@@ -78,62 +78,53 @@ public class CrimeManager : MonoBehaviour
     void SpawnRandomEvent()
     {
         if (BoroughManager.Instance == null || EventDatabase.Instance == null) return;
-        
+
         List<Borough> unlocked = BoroughManager.Instance.GetUnlockedBoroughs();
         if (unlocked.Count == 0) return;
-        
+
         Borough targetBorough = null;
         float totalWeight = 0f;
-        
-        // Calculate weights for all unlocked boroughs
+
         foreach (Borough b in unlocked)
         {
             float moodMultiplier = 2.0f - (b.mood / 50f);
             float weight = (b.baseWeight * moodMultiplier) + b.extraSpawnMultiplier;
             totalWeight += weight;
         }
-        
-        // Select random based on weight
+
         float randomValue = Random.Range(0f, totalWeight);
         float currentWeight = 0f;
-        
+
         foreach (Borough b in unlocked)
         {
             float moodMultiplier = 2.0f - (b.mood / 50f);
             float weight = (b.baseWeight * moodMultiplier) + b.extraSpawnMultiplier;
             currentWeight += weight;
-            
             if (randomValue <= currentWeight)
             {
                 targetBorough = b;
                 break;
             }
         }
-        
-        if (targetBorough == null)
-        {
-            targetBorough = unlocked[0]; // Fallback
-        }
-        
+
+        if (targetBorough == null) targetBorough = unlocked[0];
+
         // Penalty: Low Cool Factor makes Camden events spawn much more frequently
         if (SecondaryStatsManager.Instance != null && SecondaryStatsManager.Instance.GetCoolTier() == StatTier.Low)
         {
             Borough camden = unlocked.Find(b => b.type == BoroughType.Camden);
-            if (camden != null && Random.value < 0.5f) // 50% chance to override with Camden
-            {
+            if (camden != null && Random.value < 0.5f)
                 targetBorough = camden;
-            }
         }
+
         CrimeEvent evt = EventDatabase.Instance.GetRandomEvent(targetBorough.type);
-        
-        if (evt == null || targetBorough.boroughModel == null) return;
-        
+        if (evt == null || targetBorough.boroughModel == null || crimeIconPrefab == null) return;
+
         Vector3 spawnPos = GetRandomPositionOnBorough(targetBorough);
-        
         GameObject icon = Instantiate(crimeIconPrefab, spawnPos, Quaternion.identity);
         icon.GetComponent<CrimeIcon>().Initialize(evt);
         activeEvents.Add(icon);
-        
+
         if (AudioManager.Instance != null) AudioManager.Instance.PlayCrimeSpawn();
     }
     
