@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image victimPortrait;
     [SerializeField] private TextMeshProUGUI victimDescText;
     [SerializeField] private GameObject escalationWarning;
+    [SerializeField] private TextMeshProUGUI ignoreButtonText;
     
     [Header("HUD")]
     [SerializeField] private Slider crimeRateBar;
@@ -88,6 +89,9 @@ public class UIManager : MonoBehaviour
             bool alreadyIgnored = CrimeManager.Instance.IsInEscalationQueue(evt);
             escalationWarning.SetActive(alreadyIgnored);
         }
+
+        if (ignoreButtonText != null)
+            ignoreButtonText.text = $"Take Bribe \u00a3{evt.bribeValue}";
     }
 
     void Start()
