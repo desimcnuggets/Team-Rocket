@@ -2,54 +2,23 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private float rotationSpeed = 60f;
-    [SerializeField] private float mouseSensitivity = 0.5f;
-    [SerializeField] private float minAngle = -130f;
-    [SerializeField] private float maxAngle = 130f;
-    [SerializeField] private float lerpSpeed = 0.15f;
-    
-    private float targetYRotation = 0f;
-    private float currentYRotation = 0f;
-    private bool isDragging = false;
-    
-    void Update()
-    {
-        if (UIManager.Instance != null && UIManager.Instance.IsDecisionPanelOpen) return;
+    [Header("Top-Down View")]
+    [SerializeField] private float cameraHeight = 150f;
+    [SerializeField] private Transform lookTarget; // drag any scene object here as the city centre
 
-        HandleKeyboardInput();
-        HandleMouseInput();
-        ApplyRotation();
-    }
-    
-    void HandleKeyboardInput()
+    void Start()
     {
-        float input = Input.GetAxis("Horizontal");
-        targetYRotation += input * rotationSpeed * Time.deltaTime;
-        targetYRotation = Mathf.Clamp(targetYRotation, minAngle, maxAngle);
+        ApplyTopDown();
     }
-    
-    void HandleMouseInput()
+
+    void ApplyTopDown()
     {
-        if (Input.GetMouseButtonDown(0)) isDragging = true;
-        if (Input.GetMouseButtonUp(0)) isDragging = false;
-        
-        if (isDragging)
-        {
-            float mouseDelta = Input.GetAxis("Mouse X");
-            targetYRotation += mouseDelta * mouseSensitivity;
-            targetYRotation = Mathf.Clamp(targetYRotation, minAngle, maxAngle);
-        }
+        Vector3 centre = lookTarget != null ? lookTarget.position : Vector3.zero;
+        transform.position = new Vector3(centre.x, cameraHeight, centre.z);
+        transform.rotation = Quaternion.Euler(90f, 0f, 0f);
     }
-    
-    void ApplyRotation()
-    {
-        currentYRotation = Mathf.Lerp(currentYRotation, targetYRotation, lerpSpeed);
-        transform.rotation = Quaternion.Euler(0, currentYRotation, 0);
-    }
-    
-    public void RotateToBorough(float angle)
-    {
-        targetYRotation = angle;
-        targetYRotation = Mathf.Clamp(targetYRotation, minAngle, maxAngle);
-    }
+
+    // Kept for compatibility — does nothing in top-down mode
+    public void RotateToBorough(float angle) { }
 }
+
