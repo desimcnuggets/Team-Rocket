@@ -22,6 +22,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI crimeRateText;
     [SerializeField] private TextMeshProUGUI budgetText;
     [SerializeField] private TextMeshProUGUI dayCounterText;
+    [SerializeField] private UnityEngine.UI.Button pauseButton;
     
     [Header("News Ticker")]
     [SerializeField] private TextMeshProUGUI newsTickerText;
@@ -116,6 +117,12 @@ public class UIManager : MonoBehaviour
     public bool IsDecisionPanelOpen
     {
         get { return decisionCardPanel != null && decisionCardPanel.activeSelf; }
+    }
+
+    public void OnPauseClicked()
+    {
+        if (PauseMenuController.Instance != null)
+            PauseMenuController.Instance.TogglePause();
     }
     
 

@@ -89,7 +89,20 @@ public class AudioManager : MonoBehaviour
                 PlayMusic(backgroundMusicClip);
         }
     }
-    public void PlayGameOver() => PlaySFX(gameOverClip); 
+    public void PlayGameOver() => PlaySFX(gameOverClip);
+
+    public void SetMusicVolume(float volume)
+    {
+        if (musicSource != null) musicSource.volume = Mathf.Clamp01(volume);
+    }
+
+    public void SetSFXVolume(float volume)
+    {
+        if (sfxSource != null) sfxSource.volume = Mathf.Clamp01(volume);
+    }
+
+    public float GetMusicVolume() => musicSource != null ? musicSource.volume : 1f;
+    public float GetSFXVolume()   => sfxSource  != null ? sfxSource.volume  : 1f;
 
     public void PlaySFX(AudioClip clip)
     {
