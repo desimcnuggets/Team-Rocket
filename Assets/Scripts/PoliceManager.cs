@@ -51,13 +51,8 @@ public class PoliceManager : MonoBehaviour
             regenTimer += Time.deltaTime;
             if (regenTimer >= regenInterval)
             {
-                currentUnits++;
+                currentUnits = maxUnits;
                 regenTimer = 0f;
-                // If we reached max, ensure timer is 0
-                if (currentUnits >= maxUnits)
-                {
-                    regenTimer = 0f;
-                }
             }
         }
     }
