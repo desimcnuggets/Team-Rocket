@@ -4,5 +4,16 @@ public enum CrimeCategory
 {
     Petty,
     Organised,
-    WhiteCollar
+    WhiteCollar,
+    CulturalSabotage,
+    Digital,
+    SocialManipulation,
+    Surveillance,
+    InfrastructureFraud, 
+    Environmental,
+    PoliticalInterference,
+    CivilUnrest,
+    HeritageCrime
+
+
 }
