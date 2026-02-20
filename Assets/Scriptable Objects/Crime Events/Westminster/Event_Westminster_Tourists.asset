@@ -19,7 +19,14 @@ MonoBehaviour:
   bribeValue: 300
   victimDescription: Confused tourist missing their wallet
   victimPortrait: {fileID: 0}
+  mapIcon: {fileID: 0}
   tickerIgnore: Tourism industry concerned as pickpockets thrive
   tickerRaid: Underground sting nets 23 pickpockets near Big Ben
   escalatesTo: {fileID: 0}
   escalationChance: 0.3
+  raidEconomyChange: -100
+  raidTrustChange: -100
+  raidCoolChange: -100
+  ignoreEconomyChange: -100
+  ignoreTrustChange: -100
+  ignoreCoolChange: -100
