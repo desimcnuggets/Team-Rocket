@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45e04df28669e74a95e6f12713bd0bd, type: 3}
+  m_Name: School_Smear
+  m_EditorClassIdentifier: 
+  eventName: School Smear
+  borough: 1
+  category: 4
+  crimeRateChange: 1
+  bribeValue: 1800
+  victimDescription: Parent network hired reputation firm to destroy headteacher
+    who reduced class sizes
+  victimPortrait: {fileID: -768148851, guid: d21c2dabe4def3a4b825a4ad8c056818, type: 3}
+  mapIcon: {fileID: -757082436, guid: 1b3a03cc11c35814082158219a4fb7a3, type: 3}
+  tickerIgnore: Kensington headteacher resigns citing 'personal reasons'. Personal
+    reasons are sitting in a filing cabinet at the Yard.
+  tickerRaid: Parent smear network exposed. Reputation firm investigated. Three governors
+    resign. Headteacher gets pay rise.
+  escalatesTo: {fileID: 11400000, guid: 0aa73dc91662b3249b73176036529293, type: 2}
+  escalationChance: 0.5

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45e04df28669e74a95e6f12713bd0bd, type: 3}
+  m_Name: Archive_Theft
+  m_EditorClassIdentifier: 
+  eventName: Archive Theft
+  borough: 3
+  category: 8
+  crimeRateChange: 2
+  bribeValue: 4000
+  victimDescription: Observatory staff selling 140 Victorian astronomical records
+    to overseas private collectors
+  victimPortrait: {fileID: 93019179, guid: d21c2dabe4def3a4b825a4ad8c056818, type: 3}
+  mapIcon: {fileID: -708588293, guid: a04fb3298361357438d65fb877b6765d, type: 3}
+  tickerIgnore: Royal Observatory archive gap discovered. 140 items missing. Staff
+    member describes it as 'a cataloguing error'.
+  tickerRaid: Observatory archive theft exposed. 140 items traced. 23 recovered.
+    Staff member extradited. New kitchen examined.
+  escalatesTo: {fileID: 11400000, guid: 75553ec8a40bd6740be34dccc29cce72, type: 2}
+  escalationChance: 0.5

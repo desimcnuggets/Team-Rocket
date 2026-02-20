@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45e04df28669e74a95e6f12713bd0bd, type: 3}
+  m_Name: Fake_Meridian
+  m_EditorClassIdentifier: 
+  eventName: Fake Meridian
+  borough: 3
+  category: 0
+  crimeRateChange: 1
+  bribeValue: 500
+  victimDescription: "Fake meridian line painted 40 metres from real one, charging
+    tourists \xA310 per photo"
+  victimPortrait: {fileID: -225051027, guid: d21c2dabe4def3a4b825a4ad8c056818, type: 3}
+  mapIcon: {fileID: 1273067888, guid: a04fb3298361357438d65fb877b6765d, type: 3}
+  tickerIgnore: Fake meridian line now more visited than the real one. Royal Observatory
+    considering updating maps to match.
+  tickerRaid: Fake meridian arrested. Tourists demanding refunds. Real meridian sees
+    its first visitor in three weeks.
+  escalatesTo: {fileID: 11400000, guid: 71491b70d79a7454ba2c950dcd548d63, type: 2}
+  escalationChance: 0.5

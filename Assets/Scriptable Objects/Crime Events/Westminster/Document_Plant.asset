@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45e04df28669e74a95e6f12713bd0bd, type: 3}
+  m_Name: Document_Plant
+  m_EditorClassIdentifier: 
+  eventName: Document Plant
+  borough: 0
+  category: 6
+  crimeRateChange: 3
+  bribeValue: 4500
+  victimDescription: Special adviser planting fabricated policy documents in opposition
+    research
+  victimPortrait: {fileID: 1176102461, guid: d21c2dabe4def3a4b825a4ad8c056818, type: 3}
+  mapIcon: {fileID: -1052893435, guid: a04fb3298361357438d65fb877b6765d, type: 3}
+  tickerIgnore: Opposition spokesperson cites government policy document in PMQs.
+    Document does not exist. Nobody notices.
+  tickerRaid: Fabricated document plant exposed. PMQs transcript amended. Special
+    adviser 'moves to private sector'.
+  escalatesTo: {fileID: 11400000, guid: 7ba2611003156e24bab803df2ab0cce0, type: 2}
+  escalationChance: 0

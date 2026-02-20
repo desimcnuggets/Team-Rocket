@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45e04df28669e74a95e6f12713bd0bd, type: 3}
+  m_Name: Contraband_Expansion
+  m_EditorClassIdentifier: 
+  eventName: Contraband Expansion
+  borough: 5
+  category: 2
+  crimeRateChange: 6
+  bribeValue: 11000
+  victimDescription: Smuggling network expanded to grey-market electronics and pharmaceuticals
+    across three terminals
+  victimPortrait: {fileID: -74039124, guid: d21c2dabe4def3a4b825a4ad8c056818, type: 3}
+  mapIcon: {fileID: 231938385, guid: 816d79afa4e708946a20252de3119af0, type: 3}
+  tickerIgnore: Heathrow contraband network diversifies. Now classified as a logistics
+    operation by HMRC.
+  tickerRaid: Expanded Heathrow smuggling ring busted across three terminals. Economy
+    contracts 0.4% briefly.
+  escalatesTo: {fileID: 11400000, guid: ff8a80d3dbcaf8f48815741bd581b13f, type: 2}
+  escalationChance: 0

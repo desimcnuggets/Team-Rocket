@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45e04df28669e74a95e6f12713bd0bd, type: 3}
+  m_Name: Canal_Cartel
+  m_EditorClassIdentifier: 
+  eventName: Canal Cartel
+  borough: 2
+  category: 1
+  crimeRateChange: 7
+  bribeValue: 3500
+  victimDescription: Twelve-boat coordinated drug supply chain between Camden Lock
+    and Paddington Basin
+  victimPortrait: {fileID: 2117947217, guid: d21c2dabe4def3a4b825a4ad8c056818, type: 3}
+  mapIcon: {fileID: -483274386, guid: 816d79afa4e708946a20252de3119af0, type: 3}
+  tickerIgnore: Narrowboat cartel publishes newsletter. Described as 'well-produced'
+    by Vice Media.
+  tickerRaid: Twelve-boat canal cartel dismantled. Officers needed thirteen boats
+    to do it.
+  escalatesTo: {fileID: 11400000, guid: d6bcda9299cb6314f9015aa6ee0ca449, type: 2}
+  escalationChance: 0

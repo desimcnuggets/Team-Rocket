@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45e04df28669e74a95e6f12713bd0bd, type: 3}
+  m_Name: Contractor_Network
+  m_EditorClassIdentifier: 
+  eventName: Contractor Network
+  borough: 5
+  category: 5
+  crimeRateChange: 6
+  bribeValue: 9000
+  victimDescription: "Fraud spans four Hillingdon contractors. \xA34m in public funds
+    unaccounted for over 18 months."
+  victimPortrait: {fileID: 728004142, guid: d21c2dabe4def3a4b825a4ad8c056818, type: 3}
+  mapIcon: {fileID: 1744699187, guid: 816d79afa4e708946a20252de3119af0, type: 3}
+  tickerIgnore: Hillingdon infrastructure budget fully committed. No repairs possible
+    for 18 months. Four contractors invoice anyway.
+  tickerRaid: Four-contractor fraud network exposed. Council dissolved. Central government
+    sends auditors. Auditors also investigated.
+  escalatesTo: {fileID: 0}
+  escalationChance: 0

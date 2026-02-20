@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45e04df28669e74a95e6f12713bd0bd, type: 3}
+  m_Name: Activist_Doxxing
+  m_EditorClassIdentifier: 
+  eventName: Activist Doxxing
+  borough: 2
+  category: 11
+  crimeRateChange: 2
+  bribeValue: 0
+  victimDescription: Dark web forum published home addresses of 60 Camden activists
+    and journalists. Three already lost jobs.
+  victimPortrait: {fileID: -430411355, guid: 816d79afa4e708946a20252de3119af0, type: 3}
+  mapIcon: {fileID: -1559313599, guid: 816d79afa4e708946a20252de3119af0, type: 3}
+  tickerIgnore: Camden doxxing forum grows to 4,000 members. Three more activists
+    lose jobs. Forum describes this as 'accountability'.
+  tickerRaid: Doxxing forum dismantled. Admin identified. Three arrests. Forum mirrors
+    appear within 24 hours. Same information.
+  escalatesTo: {fileID: 11400000, guid: 8408ff53aaf5ec4428067eff8b4a74ac, type: 2}
+  escalationChance: 0

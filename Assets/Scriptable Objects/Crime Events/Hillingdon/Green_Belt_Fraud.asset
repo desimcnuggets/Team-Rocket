@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45e04df28669e74a95e6f12713bd0bd, type: 3}
+  m_Name: Green_Belt_Fraud
+  m_EditorClassIdentifier: 
+  eventName: Green Belt Fraud
+  borough: 5
+  category: 5
+  crimeRateChange: 4
+  bribeValue: 6000
+  victimDescription: Forged planning permission for industrial estate on green belt.
+    Someone inside council has a new car.
+  victimPortrait: {fileID: -768148851, guid: d21c2dabe4def3a4b825a4ad8c056818, type: 3}
+  mapIcon: {fileID: 777834546, guid: a04fb3298361357438d65fb877b6765d, type: 3}
+  tickerIgnore: Hillingdon industrial estate construction continues. Green belt designation
+    described as 'advisory' by developer.
+  tickerRaid: Green belt fraud exposed. Construction halted. Council employee with
+    new car under investigation. Car is a Porsche.
+  escalatesTo: {fileID: 0}
+  escalationChance: 0

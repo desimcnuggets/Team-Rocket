@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45e04df28669e74a95e6f12713bd0bd, type: 3}
+  m_Name: Moped_Crew
+  m_EditorClassIdentifier: 
+  eventName: Moped Crew
+  borough: 4
+  category: 1
+  crimeRateChange: 4
+  bribeValue: 1200
+  victimDescription: Brixton moped gang stealing 340 phones per month using relay
+    system from the market
+  victimPortrait: {fileID: -1242293474, guid: d21c2dabe4def3a4b825a4ad8c056818, type: 3}
+  mapIcon: {fileID: 752302402, guid: 1b3a03cc11c35814082158219a4fb7a3, type: 3}
+  tickerIgnore: Brixton moped thefts drive 34% surge in phone insurance sales. City
+    analysts note economic uplift.
+  tickerRaid: Brixton moped gang arrested. 340 phones recovered. All had cracked
+    screens before they were stolen.
+  escalatesTo: {fileID: 11400000, guid: afc3d0542d6d6020e2a64afc6b05e268, type: 2}
+  escalationChance: 0.5

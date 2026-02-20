@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45e04df28669e74a95e6f12713bd0bd, type: 3}
+  m_Name: Arts_Infiltration
+  m_EditorClassIdentifier: 
+  eventName: Arts Infiltration
+  borough: 2
+  category: 3
+  crimeRateChange: 2
+  bribeValue: 1800
+  victimDescription: Westfield-hired consultant embedded in Camden arts collective
+    for six months
+  victimPortrait: {fileID: -1559313599, guid: 816d79afa4e708946a20252de3119af0, type: 3}
+  mapIcon: {fileID: 1114465803, guid: 816d79afa4e708946a20252de3119af0, type: 3}
+  tickerIgnore: Camden arts collective described as 'vibrant but commercially underdeveloped'
+    in leaked property report.
+  tickerRaid: Corporate spy removed from arts collective. Collective holds emergency
+    meeting. Votes to make better art about it.
+  escalatesTo: {fileID: 11400000, guid: d3991802f3144b25fb8294b995d39a4f, type: 2}
+  escalationChance: 0.5

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45e04df28669e74a95e6f12713bd0bd, type: 3}
+  m_Name: Empty_Mansion
+  m_EditorClassIdentifier: 
+  eventName: Empty Mansion
+  borough: 1
+  category: 2
+  crimeRateChange: 4
+  bribeValue: 7000
+  victimDescription: "\xA347m Kensington mansion used as money laundering vehicle
+    since 2014. Owner in Monaco."
+  victimPortrait: {fileID: -890108890, guid: d21c2dabe4def3a4b825a4ad8c056818, type: 3}
+  mapIcon: {fileID: -1023090155, guid: 1b3a03cc11c35814082158219a4fb7a3, type: 3}
+  tickerIgnore: Empty Kensington mansion wins Architectural Digest award for Best
+    Maintained Uninhabited Property.
+  tickerRaid: Kensington mansion seized. Owner cannot be reached. Owner is in Monaco.
+    Monaco also cannot be reached.
+  escalatesTo: {fileID: 11400000, guid: f00c6daf7e74f5404ea2a74363fb2ab8, type: 2}
+  escalationChance: 0.5

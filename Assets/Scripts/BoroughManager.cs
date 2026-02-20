@@ -39,8 +39,8 @@ public class BoroughManager : MonoBehaviour
         
         boroughs.Add(new Borough
         {
-            type = BoroughType.TheCity,
-            displayName = "The City",
+            type = BoroughType.Kensington,
+            displayName = "Kensington",
             isUnlocked = false,
             unlockDay = 3,
             mood = 65f,
@@ -59,8 +59,8 @@ public class BoroughManager : MonoBehaviour
         
         boroughs.Add(new Borough
         {
-            type = BoroughType.EastEnd,
-            displayName = "East End",
+            type = BoroughType.Greenwich,
+            displayName = "Greenwich",
             isUnlocked = false,
             unlockDay = 7,
             mood = 45f,
@@ -69,8 +69,8 @@ public class BoroughManager : MonoBehaviour
         
         boroughs.Add(new Borough
         {
-            type = BoroughType.Brixton,
-            displayName = "Brixton",
+            type = BoroughType.Lambeth,
+            displayName = "Lambeth",
             isUnlocked = false,
             unlockDay = 7,
             mood = 40f,
@@ -79,8 +79,8 @@ public class BoroughManager : MonoBehaviour
         
         boroughs.Add(new Borough
         {
-            type = BoroughType.Kingston,
-            displayName = "Kingston",
+            type = BoroughType.Hillingdon,
+            displayName = "Hillingdon",
             isUnlocked = false,
             unlockDay = 9,
             mood = 60f,
@@ -158,15 +158,15 @@ public class BoroughManager : MonoBehaviour
     {
         switch (type)
         {
-            case BoroughType.TheCity:
+            case BoroughType.Kensington:
                 return "BREAKING: Crime spreads to The City — Bankers nervously check exits";
             case BoroughType.Camden:
                 return "Camden unlocked — Roadmen rejoice, artisanal coffee shops brace";
-            case BoroughType.EastEnd:
+            case BoroughType.Greenwich:
                 return "East End now active — Local geezers unimpressed";
-            case BoroughType.Brixton:
+            case BoroughType.Lambeth:
                 return "Brixton enters the fray — Community leaders demand action";
-            case BoroughType.Kingston:
+            case BoroughType.Hillingdon:
                 return "Kingston unlocked — Suburban chaos ensues";
             default:
                 return "New area unlocked";

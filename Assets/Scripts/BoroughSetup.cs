@@ -3,11 +3,11 @@ using UnityEngine;
 public class BoroughSetup : MonoBehaviour
 {
     [SerializeField] private GameObject westminsterModel;
-    [SerializeField] private GameObject theCityModel;
+    [SerializeField] private GameObject kensingtonModel;
     [SerializeField] private GameObject camdenModel;
-    [SerializeField] private GameObject eastEndModel;
-    [SerializeField] private GameObject brixtonModel;
-    [SerializeField] private GameObject kingstonModel;
+    [SerializeField] private GameObject greenwichModel;
+    [SerializeField] private GameObject lambethModel;
+    [SerializeField] private GameObject hillingdonModel;
     
     void Start()
     {
@@ -25,10 +25,10 @@ public class BoroughSetup : MonoBehaviour
             if (westminster != null) westminster.boroughModel = westminsterModel;
         }
         
-        if (theCityModel != null)
+        if (kensingtonModel != null)
         {
-            Borough theCity = BoroughManager.Instance.GetBorough(BoroughType.TheCity);
-            if (theCity != null) theCity.boroughModel = theCityModel;
+            Borough kensington = BoroughManager.Instance.GetBorough(BoroughType.Kensington);
+            if (kensington != null) kensington.boroughModel = kensingtonModel;
         }
         
         if (camdenModel != null)
@@ -37,22 +37,22 @@ public class BoroughSetup : MonoBehaviour
             if (camden != null) camden.boroughModel = camdenModel;
         }
         
-        if (eastEndModel != null)
+        if (greenwichModel != null)
         {
-            Borough eastEnd = BoroughManager.Instance.GetBorough(BoroughType.EastEnd);
-            if (eastEnd != null) eastEnd.boroughModel = eastEndModel;
+            Borough greenwich = BoroughManager.Instance.GetBorough(BoroughType.Greenwich);
+            if (greenwich != null) greenwich.boroughModel = greenwichModel;
         }
         
-        if (brixtonModel != null)
+        if (lambethModel != null)
         {
-            Borough brixton = BoroughManager.Instance.GetBorough(BoroughType.Brixton);
-            if (brixton != null) brixton.boroughModel = brixtonModel;
+            Borough lambeth = BoroughManager.Instance.GetBorough(BoroughType.Lambeth);
+            if (lambeth != null) lambeth.boroughModel = lambethModel;
         }
         
-        if (kingstonModel != null)
+        if (hillingdonModel != null)
         {
-            Borough kingston = BoroughManager.Instance.GetBorough(BoroughType.Kingston);
-            if (kingston != null) kingston.boroughModel = kingstonModel;
+            Borough hillingdon = BoroughManager.Instance.GetBorough(BoroughType.Hillingdon);
+            if (hillingdon != null) hillingdon.boroughModel = hillingdonModel;
         }
     }
 }

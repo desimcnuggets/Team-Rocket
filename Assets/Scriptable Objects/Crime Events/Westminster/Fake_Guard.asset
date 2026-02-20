@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45e04df28669e74a95e6f12713bd0bd, type: 3}
+  m_Name: Fake_Guard
+  m_EditorClassIdentifier: 
+  eventName: Fake Guard
+  borough: 0
+  category: 0
+  crimeRateChange: 2
+  bribeValue: 400
+  victimDescription: Man from Slough posing as Palace Guard. Fully booked for hen
+    parties through May.
+  victimPortrait: {fileID: -1381400410, guid: 1b3a03cc11c35814082158219a4fb7a3, type: 3}
+  mapIcon: {fileID: -1061029144, guid: 1b3a03cc11c35814082158219a4fb7a3, type: 3}
+  tickerIgnore: Fake palace guard now fully booked for hen parties through May. Added
+    a hat rental surcharge.
+  tickerRaid: Fake palace guard arrested. Bearskin hat confiscated. Man from Slough
+    calls hat a long-term investment.
+  escalatesTo: {fileID: 11400000, guid: e4da96076539f452d91159d84dc2a71a, type: 2}
+  escalationChance: 0.5

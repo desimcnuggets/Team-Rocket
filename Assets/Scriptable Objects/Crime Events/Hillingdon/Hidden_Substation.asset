@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45e04df28669e74a95e6f12713bd0bd, type: 3}
+  m_Name: Hidden_Substation
+  m_EditorClassIdentifier: 
+  eventName: Hidden Substation
+  borough: 5
+  category: 5
+  crimeRateChange: 3
+  bribeValue: 4500
+  victimDescription: Unlicensed substation under residential street powering private
+    data centre. Council blamed it on foxes.
+  victimPortrait: {fileID: 448381998, guid: d21c2dabe4def3a4b825a4ad8c056818, type: 3}
+  mapIcon: {fileID: -337692139, guid: a04fb3298361357438d65fb877b6765d, type: 3}
+  tickerIgnore: Hillingdon electrical anomalies attributed to 'urban fox activity'
+    by council spokesperson. Foxes unavailable for comment.
+  tickerRaid: Illegal substation discovered. Tech company fined. Data centre closed.
+    Council apologises for fox comment.
+  escalatesTo: {fileID: 11400000, guid: d449fb86bd679714492ca45d350e86bd, type: 2}
+  escalationChance: 0

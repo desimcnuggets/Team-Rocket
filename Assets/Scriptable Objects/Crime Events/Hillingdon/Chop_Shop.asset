@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45e04df28669e74a95e6f12713bd0bd, type: 3}
+  m_Name: Chop_Shop
+  m_EditorClassIdentifier: 
+  eventName: Chop Shop
+  borough: 5
+  category: 1
+  crimeRateChange: 3
+  bribeValue: 1500
+  victimDescription: Suburban cul-de-sac operating as car chop shop for 18 months.
+    Neighbours left glowing reviews.
+  victimPortrait: {fileID: 179900773, guid: d21c2dabe4def3a4b825a4ad8c056818, type: 3}
+  mapIcon: {fileID: -179442487, guid: 816d79afa4e708946a20252de3119af0, type: 3}
+  tickerIgnore: Hillingdon cul-de-sac chop shop noted as 'light industrial activity'
+    by council. Zone unchanged.
+  tickerRaid: Hillingdon chop shop closed. 23 vehicles recovered. Neighbours had
+    been leaving glowing reviews.
+  escalatesTo: {fileID: 11400000}
+  escalationChance: 0.5

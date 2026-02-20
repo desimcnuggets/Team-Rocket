@@ -3,9 +3,9 @@ using UnityEngine;
 public enum BoroughType
 {
     Westminster,
-    TheCity,
+    Kensington,
     Camden,
-    EastEnd,
-    Brixton,
-    Kingston
+    Greenwich,
+    Lambeth,
+    Hillingdon
 }

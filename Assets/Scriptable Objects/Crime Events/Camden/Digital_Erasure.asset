@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45e04df28669e74a95e6f12713bd0bd, type: 3}
+  m_Name: Digital_Erasure
+  m_EditorClassIdentifier: 
+  eventName: Digital Erasure
+  borough: 2
+  category: 3
+  crimeRateChange: 2
+  bribeValue: 2200
+  victimDescription: Tech startup replacing Camden Market traders with AI doppelgangers
+    to siphon customers online
+  victimPortrait: {fileID: -270638069, guid: d21c2dabe4def3a4b825a4ad8c056818, type: 3}
+  mapIcon: {fileID: -1288800242, guid: 1b3a03cc11c35814082158219a4fb7a3, type: 3}
+  tickerIgnore: Camden Market footfall down 28%. Digital doppelgangers rated 4.8
+    stars. Real traders rated 4.7.
+  tickerRaid: AI trader fraud shut down. 47 fake storefronts removed. Startup pivots
+    to 'ethical AI commerce'. Same thing.
+  escalatesTo: {fileID: 11400000}
+  escalationChance: 0

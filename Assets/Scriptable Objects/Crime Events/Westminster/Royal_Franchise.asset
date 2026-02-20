@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45e04df28669e74a95e6f12713bd0bd, type: 3}
+  m_Name: Royal_Franchise
+  m_EditorClassIdentifier: 
+  eventName: Royal Franchise
+  borough: 0
+  category: 1
+  crimeRateChange: 4
+  bribeValue: 1800
+  victimDescription: Six impostors covering Buckingham Palace, Horse Guards, Tower
+    of London, and Westminster Abbey
+  victimPortrait: {fileID: 2077793880, guid: d21c2dabe4def3a4b825a4ad8c056818, type: 3}
+  mapIcon: {fileID: 818810742, guid: 1b3a03cc11c35814082158219a4fb7a3, type: 3}
+  tickerIgnore: "Six-guard impostor network covering Palace, Tower, Horse Guards,
+    and Abbey. Group revenue \xA33,400/day."
+  tickerRaid: Impostor guard network arrested. Costumes improving noticeably with
+    each generation. Noted with concern.
+  escalatesTo: {fileID: 0}
+  escalationChance: 0

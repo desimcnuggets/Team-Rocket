@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45e04df28669e74a95e6f12713bd0bd, type: 3}
+  m_Name: Staff_Dossiers
+  m_EditorClassIdentifier: 
+  eventName: Staff Dossiers
+  borough: 1
+  category: 9
+  crimeRateChange: 0
+  bribeValue: 5000
+  victimDescription: Private firm compiling dossiers on all domestic workers in borough.
+    3,000 files. Subjects unaware.
+  victimPortrait: {fileID: -603336417, guid: d21c2dabe4def3a4b825a4ad8c056818, type: 3}
+  mapIcon: {fileID: -1467836615, guid: 1b3a03cc11c35814082158219a4fb7a3, type: 3}
+  tickerIgnore: Kensington domestic intelligence firm processes 200 new dossiers
+    this month. Clients describe service as 'reassuring'.
+  tickerRaid: Private dossier firm raided. 3,000 dossiers seized. Firm's own staff
+    discover they are also in the database.
+  escalatesTo: {fileID: 0}
+  escalationChance: 0

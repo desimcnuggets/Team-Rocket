@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45e04df28669e74a95e6f12713bd0bd, type: 3}
+  m_Name: Register_Tampering
+  m_EditorClassIdentifier: 
+  eventName: Register Tampering
+  borough: 0
+  category: 6
+  crimeRateChange: 4
+  bribeValue: 6500
+  victimDescription: 1,400 voters quietly removed from Westminster electoral register
+    ahead of by-election
+  victimPortrait: {fileID: 1889437620, guid: d21c2dabe4def3a4b825a4ad8c056818, type: 3}
+  mapIcon: {fileID: 2108898981, guid: 1b3a03cc11c35814082158219a4fb7a3, type: 3}
+  tickerIgnore: Westminster by-election turnout anomaly described as 'within statistical
+    norms' by returning officer. It is not.
+  tickerRaid: Electoral register tampering confirmed. By-election result suspended.
+    1,400 voters reinstated. Someone resigns quietly.
+  escalatesTo: {fileID: 11400000, guid: 84f222868d267554fb5c3be3cad41b6d, type: 2}
+  escalationChance: 0

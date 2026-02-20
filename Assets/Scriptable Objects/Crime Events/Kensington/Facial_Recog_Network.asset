@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45e04df28669e74a95e6f12713bd0bd, type: 3}
+  m_Name: Facial_Recog_Network
+  m_EditorClassIdentifier: 
+  eventName: Facial Recog Network
+  borough: 1
+  category: 9
+  crimeRateChange: 0
+  bribeValue: 3500
+  victimDescription: Residents' association running facial recognition across 34
+    streets. 4,200 undesirables logged.
+  victimPortrait: {fileID: -486487153, guid: d21c2dabe4def3a4b825a4ad8c056818, type: 3}
+  mapIcon: {fileID: -1733947463, guid: 1b3a03cc11c35814082158219a4fb7a3, type: 3}
+  tickerIgnore: Kensington residents' safety initiative expands to 40 streets. No
+    crimes prevented. 4,200 people tracked.
+  tickerRaid: Facial recognition network dismantled. 34 cameras removed. Database
+    deleted. Association files formal complaint about deletion.
+  escalatesTo: {fileID: 11400000, guid: ef6703a3de4ac4244b4e5725f0a9baa2, type: 2}
+  escalationChance: 0.5

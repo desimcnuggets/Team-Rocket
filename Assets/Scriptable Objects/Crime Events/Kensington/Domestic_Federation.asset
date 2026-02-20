@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45e04df28669e74a95e6f12713bd0bd, type: 3}
+  m_Name: Domestic_Federation
+  m_EditorClassIdentifier: 
+  eventName: Domestic Federation
+  borough: 1
+  category: 1
+  crimeRateChange: 3
+  bribeValue: 2800
+  victimDescription: Cartel federated across Chelsea, Notting Hill and Belgravia
+    controlling six postcodes
+  victimPortrait: {fileID: -486487153, guid: d21c2dabe4def3a4b825a4ad8c056818, type: 3}
+  mapIcon: {fileID: 1413514495, guid: 816d79afa4e708946a20252de3119af0, type: 3}
+  tickerIgnore: West London domestic cartel controls staffing rates across six postcodes.
+    Au pair market next.
+  tickerRaid: Domestic cartel raided. Officers describe blacklist of 200 families
+    as 'entirely understandable'.
+  escalatesTo: {fileID: 11400000, guid: c149487f5fb196545b3cc72211714484, type: 2}
+  escalationChance: 0
