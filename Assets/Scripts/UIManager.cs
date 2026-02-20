@@ -23,6 +23,7 @@ public class UIManager : MonoBehaviour
     
     [Header("News Ticker")]
     [SerializeField] private TextMeshProUGUI newsTickerText;
+    [SerializeField] private NewsTicker newsTicker;
     
     [Header("Secondary Stats")]
     [SerializeField] private TextMeshProUGUI economyText;
@@ -322,7 +323,11 @@ public class UIManager : MonoBehaviour
     
     public void UpdateTicker(string message)
     {
-        if (newsTickerText != null)
+        if (newsTicker != null)
+        {
+            newsTicker.AddMessage(message);
+        }
+        else if (newsTickerText != null)
         {
             newsTickerText.text = message;
         }
