@@ -29,10 +29,18 @@ public class AccessibilityManager : MonoBehaviour
     // ── Runtime state ─────────────────────────────────────────────────────────
     private bool isDyslexicModeOn = false;
 
-    // Maps each TMP_Text instance to the font it had BEFORE dyslexic mode
-    // was enabled, so we can restore it precisely.
-    private readonly Dictionary<TMP_Text, TMP_FontAsset> originalFonts =
-        new Dictionary<TMP_Text, TMP_FontAsset>();
+    // Stores all per-component state we touch so we can restore it exactly.
+    private struct TextSnapshot
+    {
+        public TMP_FontAsset font;
+        public bool          autoSizing;
+        public float         fontSize;
+        public float         fontSizeMin;
+        public float         fontSizeMax;
+    }
+
+    private readonly Dictionary<TMP_Text, TextSnapshot> snapshots =
+        new Dictionary<TMP_Text, TextSnapshot>();
 
     private const string PrefKey = "DyslexicMode";
 
@@ -81,7 +89,7 @@ public class AccessibilityManager : MonoBehaviour
         if (isDyslexicModeOn)
         {
             // Clear stale references from previous scene, then reapply
-            originalFonts.Clear();
+            snapshots.Clear();
             ApplyDyslexicFont();
         }
     }
@@ -106,11 +114,10 @@ public class AccessibilityManager : MonoBehaviour
             RestoreOriginalFonts();
     }
 
-    // ── Private helpers ───────────────────────────────────────────────────────
-
     /// <summary>
-    /// Finds every TMP_Text in the scene (including inactive objects),
-    /// stores its current font, then replaces it with the dyslexic font.
+    /// Finds every TMP_Text in the scene (including inactive objects), snapshots
+    /// its font and size settings, swaps to the dyslexic font, then enables
+    /// Auto Size so TMP shrinks the text to fit its container rather than overflow.
     /// </summary>
     private void ApplyDyslexicFont()
     {
@@ -127,32 +134,54 @@ public class AccessibilityManager : MonoBehaviour
 
         foreach (TMP_Text t in allTexts)
         {
-            // Record original font only the first time
-            if (!originalFonts.ContainsKey(t))
-                originalFonts[t] = t.font;
+            // Snapshot original settings only the first time
+            if (!snapshots.ContainsKey(t))
+            {
+                snapshots[t] = new TextSnapshot
+                {
+                    font        = t.font,
+                    autoSizing  = t.enableAutoSizing,
+                    fontSize    = t.fontSize,
+                    fontSizeMin = t.fontSizeMin,
+                    fontSizeMax = t.fontSizeMax
+                };
+            }
 
+            // Swap font
             t.font = dyslexicFont;
+
+            // Enable Auto Size: ceiling = original size, floor = 40% of that (min 8pt)
+            float originalSize = snapshots[t].fontSize;
+            t.enableAutoSizing = true;
+            t.fontSizeMax      = originalSize;
+            t.fontSizeMin      = Mathf.Max(8f, originalSize * 0.4f);
         }
 
         Debug.Log($"[AccessibilityManager] Dyslexic Mode ON — swapped {allTexts.Length} TMP_Text components.");
     }
 
     /// <summary>
-    /// Restores every TMP_Text to the font it had when dyslexic mode
-    /// was first enabled, then clears the lookup table.
+    /// Restores every TMP_Text to the exact state it was in before dyslexic
+    /// mode was enabled (font, font size, and auto-sizing settings).
     /// </summary>
     private void RestoreOriginalFonts()
     {
         int restored = 0;
-        foreach (var kvp in originalFonts)
+        foreach (var kvp in snapshots)
         {
-            if (kvp.Key != null) // guard against destroyed objects
-            {
-                kvp.Key.font = kvp.Value;
-                restored++;
-            }
+            TMP_Text t = kvp.Key;
+            if (t == null) continue; // guard against destroyed objects
+
+            TextSnapshot snap = kvp.Value;
+            t.font             = snap.font;
+            t.enableAutoSizing = snap.autoSizing;
+            t.fontSizeMin      = snap.fontSizeMin;
+            t.fontSizeMax      = snap.fontSizeMax;
+            // Restore the explicit size last so TMP doesn't re-clamp it
+            t.fontSize         = snap.fontSize;
+            restored++;
         }
-        originalFonts.Clear();
+        snapshots.Clear();
 
         Debug.Log($"[AccessibilityManager] Dyslexic Mode OFF — restored {restored} TMP_Text components.");
     }
