@@ -49,6 +49,8 @@ public class UIManager : MonoBehaviour
     [Header("Police Units")]
     [SerializeField] private Image[] policeUnitIcons;
     [SerializeField] private Slider policeRegenSlider;
+    [SerializeField] private Color unitAvailableColor = Color.white;
+    [SerializeField] private Color unitUsedColor = Color.gray;
     
     private CrimeEvent currentEvent;
     private GameObject currentIcon;
@@ -86,6 +88,25 @@ public class UIManager : MonoBehaviour
             bool alreadyIgnored = CrimeManager.Instance.IsInEscalationQueue(evt);
             escalationWarning.SetActive(alreadyIgnored);
         }
+    }
+
+    void Start()
+    {
+        // Defensive: Find missing NewsTicker reference
+        if (newsTicker == null) newsTicker = FindFirstObjectByType<NewsTicker>();
+
+        // Initial UI sync
+        if (CrimeManager.Instance != null)
+        {
+            UpdateCrimeBar(CrimeManager.Instance.GetCrimeRate());
+        }
+        
+        if (EconomyManager.Instance != null)
+        {
+            UpdateBudget(EconomyManager.Instance.GetBudget());
+        }
+
+        UpdateSecondaryStatsUI();
     }
 
     public bool IsDecisionPanelOpen
@@ -162,7 +183,8 @@ public class UIManager : MonoBehaviour
         if (isAnarchy && crimeBarFill != null)
         {
             float t = Mathf.PingPong(Time.time * 2f, 1f);
-            crimeBarFill.color = Color.Lerp(Color.red, new Color(0.5f, 0f, 0f), t);
+            ColorUtility.TryParseHtmlString("#EF4444", out Color c);
+            crimeBarFill.color = Color.Lerp(c, new Color(c.r * 0.5f, 0f, 0f), t);
         }
     }
 
@@ -189,7 +211,18 @@ public class UIManager : MonoBehaviour
             {
                 if (policeUnitIcons[i] != null)
                 {
-                    policeUnitIcons[i].gameObject.SetActive(i < PoliceManager.Instance.currentUnits);
+                    // Tint icons based on availability instead of disabling them
+                    if (i < PoliceManager.Instance.currentUnits)
+                    {
+                        policeUnitIcons[i].color = unitAvailableColor;
+                        policeUnitIcons[i].gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        policeUnitIcons[i].color = unitUsedColor;
+                        // Only show icons up to the current max capacity
+                        policeUnitIcons[i].gameObject.SetActive(i < PoliceManager.Instance.maxUnits);
+                    }
                 }
             }
         }
@@ -252,20 +285,24 @@ public class UIManager : MonoBehaviour
             isAnarchy = false;
             if (crimeRate < 30f)
             {
-                crimeBarFill.color = Color.blue;
+                ColorUtility.TryParseHtmlString("#60A5FA", out Color c);
+                crimeBarFill.color = c;
             }
             else if (crimeRate < 70f)
             {
-                crimeBarFill.color = Color.green;
+                ColorUtility.TryParseHtmlString("#4ADE80", out Color c);
+                crimeBarFill.color = c;
             }
             else if (crimeRate < 90f)
             {
-                // Amber
-                crimeBarFill.color = new Color(1f, 0.75f, 0f);
+                ColorUtility.TryParseHtmlString("#FB923C", out Color c);
+                crimeBarFill.color = c;
             }
             else
             {
                 isAnarchy = true;
+                ColorUtility.TryParseHtmlString("#EF4444", out Color c);
+                crimeBarFill.color = c;
                 if (AudioManager.Instance != null) AudioManager.Instance.PlayAnarchyDrone(true);
             }
 

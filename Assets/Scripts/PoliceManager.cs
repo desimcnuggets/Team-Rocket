@@ -35,17 +35,33 @@ public class PoliceManager : MonoBehaviour
         else if (instance != this)
         {
             Destroy(gameObject);
+            return;
         }
-        else
+
+        ApplyAPCap();
+        currentUnits = maxUnits;
+    }
+
+    private void ApplyAPCap()
+    {
+        int targetMax = 3;
+        if (SecondaryStatsManager.Instance != null && SecondaryStatsManager.Instance.GetTrustTier() == StatTier.Low)
         {
-            Destroy(gameObject);
+            targetMax = 2;
         }
         
-        currentUnits = maxUnits;
+        if (maxUnits != targetMax)
+        {
+            maxUnits = targetMax;
+            currentUnits = Mathf.Min(currentUnits, maxUnits);
+        }
     }
 
     void Update()
     {
+        // GDD v2.0: Dynamic AP Cap based on Trust
+        ApplyAPCap();
+
         if (currentUnits < maxUnits)
         {
             regenTimer += Time.deltaTime;

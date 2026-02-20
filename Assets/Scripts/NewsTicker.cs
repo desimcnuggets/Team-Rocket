@@ -10,10 +10,10 @@ public class NewsTicker : MonoBehaviour
 
     [Header("Ambient Messages")]
     [SerializeField] private List<string> ambientMessages = new List<string> {
-        "◆ LONDON METROPOLITAN POLICE: MONITORING FEED",
-        "◆ WEATHER: LIGHT RAIN OVER THE WEST END",
-        "◆ TUBE UPDATE: MINOR DELAYS ON THE DISTRICT LINE",
-        "◆ PUBLIC SERVICE: REPORT SUSPICIOUS MOVEMENT IMMEDIATELY"
+        "LONDON METROPOLITAN POLICE: MONITORING FEED",
+        "WEATHER: LIGHT RAIN OVER THE WEST END",
+        "TUBE UPDATE: MINOR DELAYS ON THE DISTRICT LINE",
+        "PUBLIC SERVICE: REPORT SUSPICIOUS MOVEMENT IMMEDIATELY"
     };
 
     private TextMeshProUGUI tickerText;
@@ -27,9 +27,19 @@ public class NewsTicker : MonoBehaviour
 
     void Awake()
     {
-        tickerText = GetComponent<TextMeshProUGUI>();
+        if (tickerText == null) tickerText = GetComponent<TextMeshProUGUI>();
+        if (tickerText == null) tickerText = GetComponentInChildren<TextMeshProUGUI>();
+        
         rectTransform = GetComponent<RectTransform>();
         rootCanvas = GetComponentInParent<Canvas>();
+
+        // Force ticker-friendly text settings
+        if (tickerText != null)
+        {
+            tickerText.enableWordWrapping = false;
+            tickerText.overflowMode = TextOverflowModes.Overflow;
+            tickerText.alignment = TextAlignmentOptions.Center;
+        }
     }
 
     void Start()
@@ -39,6 +49,8 @@ public class NewsTicker : MonoBehaviour
         rectTransform.anchorMin = new Vector2(0.5f, rectTransform.anchorMin.y);
         rectTransform.anchorMax = new Vector2(0.5f, rectTransform.anchorMax.y);
         rectTransform.pivot = new Vector2(0.5f, rectTransform.pivot.y);
+        
+        if (rootCanvas == null) rootCanvas = GetComponentInParent<Canvas>();
     }
 
     void Update()
@@ -60,7 +72,7 @@ public class NewsTicker : MonoBehaviour
 
     public void AddMessage(string message)
     {
-        messageQueue.Enqueue("◆ " + message.ToUpper());
+        messageQueue.Enqueue(message.ToUpper());
     }
 
     private void CheckQueue()
@@ -85,12 +97,23 @@ public class NewsTicker : MonoBehaviour
 
     private void StartScrolling(string message)
     {
-        tickerText.text = message;
+        tickerText.text = "◆ " + message;
+        
+        // Ensure layout is current before width check
+        Canvas.ForceUpdateCanvases();
         tickerText.ForceMeshUpdate();
+        
         float textWidth = tickerText.preferredWidth;
+        
+        // Safety for empty text or failed mesh update
         if (textWidth <= 0) textWidth = 500f;
 
+        // Size the RectTransform to match the content so pivot 0.5 is accurate
+        rectTransform.sizeDelta = new Vector2(textWidth, rectTransform.sizeDelta.y);
+
         float width = 1920f;
+        if (rootCanvas == null) rootCanvas = GetComponentInParent<Canvas>();
+        
         if (useCanvasWidth && rootCanvas != null)
         {
             width = rootCanvas.GetComponent<RectTransform>().rect.width;
@@ -100,11 +123,19 @@ public class NewsTicker : MonoBehaviour
             width = transform.parent.GetComponent<RectTransform>().rect.width;
         }
 
+        if (width <= 0) width = 1920f; // Final safety
+
         // Calculate positions relative to the center
+        // resetPositionX: Right edge of text starts at Left edge of screen
         resetPositionX = (width / 2f) + (textWidth / 2f);
-        offscreenLeftX = -(width / 2f) - (textWidth / 2f);
+        
+        // offscreenLeftX: Left edge of text passes Right edge of screen
+        // Added 100px padding to ensure it's fully gone before recycling
+        offscreenLeftX = -(width / 2f) - (textWidth / 2f) - 100f;
 
         rectTransform.anchoredPosition = new Vector2(resetPositionX, rectTransform.anchoredPosition.y);
         isScrolling = true;
+
+        Debug.Log($"Ticker Started: '{message}' | Width: {width} | TextWidth: {textWidth} | StartX: {resetPositionX}");
     }
 }
